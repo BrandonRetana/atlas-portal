@@ -1,0 +1,35 @@
+body{
+    background-color: #093a3e;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    color: white;
+}
+
+.image {
+	margin-bottom: 20px;
+}
+
+.text {
+	text-align: center;
+    color: whitesmoke;
+}
+
+.tabla {
+	border-collapse: collapse;
+}
+
+.tabla th, .tabla td {
+	padding: 8px;
+	border: 1px solid #ddd;
+    color: #ddd;
+}
+
+.tabla th {
+    color: black;
+    background-color: #f2f2f2;
+}
