@@ -1,27 +1,38 @@
-var dropzone = document.getElementById('drag-drop-box');
+const dropBox = document.querySelector('.drag-drop-box');
 
-dropzone.addEventListener('dragover', function(event) {
-  event.preventDefault();
-  dropzone.style.border = '2px dashed #333';
+dropBox.addEventListener('dragover', e => {
+    e.preventDefault();
+    dropBox.classList.add('dragging');
 });
 
-dropzone.addEventListener('dragleave', function(event) {
-  event.preventDefault();
-  dropzone.style.border = '2px dashed #aaa';
+dropBox.addEventListener('dragleave', e => {
+    dropBox.classList.remove('dragging');
 });
 
-dropzone.addEventListener('drop', function(event) {
-  event.preventDefault();
-  dropzone.style.border = '2px dashed #aaa';
-  
-  var files = event.dataTransfer.files;
-  var formData = new FormData();
-  formData.append('file', files[0]);
-  
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/upload', true);
-  xhr.onload = function() {
-    console.log(this.responseText);
-  };
-  xhr.send(formData);
+dropBox.addEventListener('drop', e => {
+    e.preventDefault();
+    dropBox.classList.remove('dragging');
+
+    const files = Array.from(e.dataTransfer.files);
+    files.forEach(uploadFile);
 });
+
+function uploadFile(file) {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    // Aquí puedes hacer una llamada AJAX a tu servidor para manejar el archivo
+    // utilizando una librería como axios o fetch.
+    // Por ejemplo:
+    //
+    // fetch('/upload', {
+    //   method: 'POST',
+    //   body: formData
+    // })
+    // .then(response => {
+    //   console.log(response);
+    // })
+    // .catch(error => {
+    //   console.error(error);
+    // });
+}
