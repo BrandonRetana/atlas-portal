@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "Image")
+@Table(name = "image")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +28,7 @@ public class Image {
     private String description;
 
     @NotNull
+    @Column(name = "creation_date")
     private Date creationDate;
 
     @ElementCollection
@@ -34,7 +36,9 @@ public class Image {
 
     @OneToOne
     private Person author;
-    //TODO: owner de tipo persona o institucion
+
+    @OneToOne
+    private Owner owner;
 
     @NotNull
     private String license;
