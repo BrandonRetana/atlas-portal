@@ -21,18 +21,15 @@ function uploadFile(file) {
     const formData = new FormData();
     formData.append('file', file);
 
-    // Aquí puedes hacer una llamada AJAX a tu servidor para manejar el archivo
-    // utilizando una librería como axios o fetch.
-    // Por ejemplo:
-    //
-    // fetch('/upload', {
-    //   method: 'POST',
-    //   body: formData
-    // })
-    // .then(response => {
-    //   console.log(response);
-    // })
-    // .catch(error => {
-    //   console.error(error);
-    // });
+    fetch('/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        console.log(response);
+    })
+    .catch(error => {
+        console.error(error);
+    });
 }
+

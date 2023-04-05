@@ -79,8 +79,6 @@ public abstract class Taxon {
         return ancestorID;
     }
 
-    public  void setAcestorID(long ancestorID) {
-        this.acestorID = acestorID;
-    }
+
 
 }
