@@ -1,6 +1,4 @@
-package com.atlas.models;
-
-import java.sql.Date;
+package com.atlas.models.taxonModels;
 
 import javax.validation.constraints.NotNull;
 
@@ -9,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,21 +20,25 @@ public abstract class Taxon {
     @Column(name = "scientific_name")
     private String scientificName;
 
-    @OneToOne
-    private Person author;
+    @Column(name = "author")
+    private String author;
 
     @Column(name = "publication_year")
-    private Date publicattionYear;
+    private int publicattionYear;
 
     @Column(name = "taxon_acestor_id")
-    public long acestorID;
+    public long ancestorID;
 
-    public Taxon(long id, String scientificName, Person author, Date publicattionYear, long acestorID) {
+    @Column(name = "taxon_type")
+    public String taxon_type;
+
+    public Taxon(long id, String scientificName, String author, int publicattionYear, long ancestorID, String taxon_type) {
         this.id = id;
         this.scientificName = scientificName;
         this.author = author;
         this.publicattionYear = publicattionYear;
-        this.acestorID = acestorID;
+        this.ancestorID = ancestorID;
+        this.taxon_type = taxon_type;
     }
 
     public Taxon(){}
@@ -58,27 +59,27 @@ public abstract class Taxon {
         this.scientificName = scientificName;
     }
 
-    public Person getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Person author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
-    public Date getPublicattionYear() {
+    public int getPublicattionYear() {
         return publicattionYear;
     }
 
-    public void setPublicattionYear(Date publicattionYear) {
+    public void setPublicattionYear(int publicattionYear) {
         this.publicattionYear = publicattionYear;
     }
 
     public long getAcestorID() {
-        return acestorID;
+        return ancestorID;
     }
 
-    public void setAcestorID(long acestorID) {
+    public  void setAcestorID(long ancestorID) {
         this.acestorID = acestorID;
     }
 

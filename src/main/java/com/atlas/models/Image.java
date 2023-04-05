@@ -15,6 +15,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import com.atlas.models.taxonModels.Taxon;
+
 
 @Entity
 @Table(name = "image")
