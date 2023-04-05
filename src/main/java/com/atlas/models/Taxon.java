@@ -2,6 +2,8 @@ package com.atlas.models;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotNull;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ public abstract class Taxon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
     @Column(name = "scientific_name")
     private String scientificName;
 
