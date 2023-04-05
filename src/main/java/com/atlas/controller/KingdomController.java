@@ -23,10 +23,6 @@ public class KingdomController {
     private KingdomService kingdomService;
 
 
-    //public KingdomController(KingdomService kingdomService) {
-    //    this.kingdomService = kingdomService;
-    //}
-
     @RequestMapping("/all")
     public List<Kingdom> getAllKingdoms() {
         return kingdomService.getAllKingdoms();
