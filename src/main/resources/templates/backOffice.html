@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Clases taxonómicas</title>
+	<!-- Agrega la biblioteca Bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Agrega el archivo CSS personalizado -->
+	<link rel="stylesheet" href="/style/backOffice.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Clases taxonómicas</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Itera sobre la lista de clases taxonómicas y muestra los datos en la tabla -->
+				<tr th:each="clase : ${clases}">
+					<td th:text="${clase.id}"></td>
+					<td th:text="${clase.nombre}"></td>
+					<td>
+						<!-- Agrega botones para editar y eliminar cada clase taxonómica -->
+						<a class="btn btn-primary" th:href="@{/clases/editar/{id}(id=${clase.id})}"><i class="fas fa-edit"></i> Editar</a>
+						<a class="btn btn-danger" th:href="@{/clases/eliminar/{id}(id=${clase.id})}"><i class="fas fa-trash-alt"></i> Eliminar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- Agrega un botón para agregar una nueva clase taxonómica -->
+		<a class="btn btn-success" th:href="@{/clases/agregar}"><i class="fas fa-plus"></i> Agregar clase taxonómica</a>
+	</div>
+	<!-- Agrega la biblioteca Font Awesome -->
+	<script src="https://kit.fontawesome.com/6ee65e7daa.js" crossorigin="anonymous"></script>
+</body>
+</html>
