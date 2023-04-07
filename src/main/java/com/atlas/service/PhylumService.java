@@ -21,6 +21,16 @@ public class PhylumService{
         return phylumRepository.findById(id).orElseThrow(() -> new RuntimeException("Phylum not found"));
     }
 
+    public Class getPhylumByName(String name){ 
+        Optional<Phylum> phylum = phylumRepository.findByName(name);
+           if (phylum.isPresent()) {
+           return phylum.get();
+       } else {
+           throw new RuntimeException("Phylum not found");
+       }
+    }
+
+
     public List<Phylum> getAllPhyla() {
         return phylumRepository.findAll();
     }

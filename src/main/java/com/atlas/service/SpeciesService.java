@@ -21,6 +21,15 @@ public class SpeciesService {
         return speciesRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
     }
 
+    public Class getSpeciesByName(String name){ 
+        Optional<Species> Species = SpeciesRepository.findByName(name);
+           if (Species.isPresent()) {
+           return Species.get();
+       } else {
+           throw new RuntimeException("Species not found");
+       }
+    }
+
     public List<Species> getAllSpecies() {
         return speciesRepository.findAll();
     }

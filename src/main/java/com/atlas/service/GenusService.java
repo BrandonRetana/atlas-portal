@@ -27,6 +27,15 @@ public class GenusService {
        }
     }
 
+    public Class getGenusByName(String name){ 
+        Optional<Genus> genus = genusRepository.findByName(name);
+           if (genus.isPresent()) {
+           return genus.get();
+       } else {
+           throw new RuntimeException("Genus not found");
+       }
+    }
+
     public List<Genus> getAllGenera() {
         return genusRepository.findAll();
     }

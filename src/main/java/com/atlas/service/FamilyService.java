@@ -27,6 +27,15 @@ public class FamilyService {
        }
     }
 
+     public Class getFamilyByName(String name){ 
+        Optional<Family> family = familyRepository.findByName(name);
+           if (family.isPresent()) {
+           return family.get();
+       } else {
+           throw new RuntimeException("Family not found");
+       }
+    }
+
     public List<Family> getAllFamilies() {
         return familyRepository.findAll();
     }

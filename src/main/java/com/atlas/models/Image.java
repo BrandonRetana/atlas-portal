@@ -34,7 +34,7 @@ public class Image {
     private Date creationDate;
 
     @ElementCollection
-    private List<String> keywords;
+    private List<KeyWord> keywords;
 
     @OneToOne
     private Person author;
@@ -108,7 +108,6 @@ public class Image {
     public void setPath(String path) {
         this.path = path;
     }
-    
-    
 
+   
 }

@@ -28,6 +28,17 @@ public class KingdomService {
        }
     }
 
+    public Kingdom getKingdomByName(String name) {
+       Optional<Kingdom> kingdom = kingdomRepository.findByName(name);
+       if (kingdom.isPresent()) {
+           return kingdom.get();
+       } else {
+           throw new RuntimeException("Kingdom not found");
+       }
+    }
+
+
+
     public List<Kingdom> getAllKingdoms() {
         return kingdomRepository.findAll();
     } 

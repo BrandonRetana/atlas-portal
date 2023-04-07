@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Name;
+
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,6 +18,7 @@ public abstract class Taxon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Name
     @NotNull
     @Column(name = "scientific_name")
     private String scientificName;

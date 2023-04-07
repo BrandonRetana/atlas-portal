@@ -26,6 +26,16 @@ public class ClassService {
        }
     }
 
+    public Class getClassByName(String name){ 
+        Optional<Class> class1 = classRepository.findByName(name);
+           if (class1.isPresent()) {
+           return class1.get();
+       } else {
+           throw new RuntimeException("Class not found");
+       }
+    }
+    
+
     public List<Class> getAllClasses() {
         return classRepository.findAll();
     }

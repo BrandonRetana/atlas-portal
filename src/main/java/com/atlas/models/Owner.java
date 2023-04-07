@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Name;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,6 +14,7 @@ public abstract class Owner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     
+    @Name
     private String name;
 
     private String country;
