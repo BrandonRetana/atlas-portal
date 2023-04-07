@@ -18,6 +18,12 @@ body{
     text-align: center;
     background-color: #f5f5f5;
   }
+
+  .preg textarea {
+    height: 150px; /* Aquí puedes ajustar el tamaño deseado */
+    width: 800px;
+  }
+  
   
   /* Estilos para los selectores */
   .selectors {
@@ -77,4 +83,66 @@ body{
     font-weight: bold;
     margin-top: 20px;
     color: white;
+  }
+
+  .palabras-clave label {
+    color: white;
+    margin-top: 20px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .palabras-clave input[type="checkbox"] {
+    color: white;
+    margin-right: 0.5rem;
+  }
+
+  .palabras-clave legend{
+    color: white;
+  }
+  
+
+  .selector-autor label{
+    color: white;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .selector-autor select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+
+  .selector-owner label{
+    color: white;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .selector-owner select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+
+  .selector-licencia label{
+    color: white;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .selector-licencia select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
   }
