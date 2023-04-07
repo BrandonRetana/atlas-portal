@@ -48,6 +48,7 @@ public class Image {
     @OneToMany
     private List<Taxon> taxon;
 
+    private String path;
 
     public Image (){}
 
@@ -98,6 +99,14 @@ public class Image {
 
     public void setTaxon(List<Taxon> taxon) {
         this.taxon = taxon;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
     
     

@@ -19,9 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping
-public class TaxonController {
+public class ImageController {
     
-    @GetMapping("/create/taxon")
+    @GetMapping("/create/image")
     public String createTaxon(){
         return "formImage";
     }

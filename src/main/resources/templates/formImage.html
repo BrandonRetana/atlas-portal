@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Drag and drop con selectores taxonómicos</title>
-    <link rel="stylesheet" href="/style/FormImage.css">
-  </head>
-  <body>
-    <div class="container">
+
+<head>
+  <title>Drag and drop con selectores taxonómicos</title>
+  <link rel="stylesheet" href="/style/FormImage.css">
+</head>
+
+<body>
+  <div class="container">
+    <form id="taxonomic-form" action="/submit/taxonomic" method="POST">
+      <!----Contenedor del drag and drop-->
       <div class="drag-drop-box">
         <h2>Arrastra y suelta las imágenes aquí</h2>
         <p>O haz clic para seleccionarlas</p>
       </div>
 
+      <!----Contenedor de las preguntas-->
+      <div class="preg">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion"></textarea>
+        <br>
+        <br>
+        <label for="fecha-creacion">Fecha de creación:</label>
+        <input type="date" id="fecha-creacion" name="fecha-creacion">
+
+
+      </div>
+
+      <!----Contenedor de los selectores-->
       <div class="selectors">
         <div class="selector">
           <label for="reino">Reino:</label>
@@ -84,12 +101,13 @@
             <option value="mollusca">Mollusca</option>
           </select>
           <button type="button" class="btn-create">Crear</button>
+          <br><br>
+          <button type="submit">Enviar</button>
+          <form id="taxonomic-form" action="/submit/taxonomic" method="POST">
         </div>
-
-        
       </div>
-      <button type="submit">Enviar</button>
       <script src="/javascript/DragAndDrop.js"></script>
-    </div>
-  </body>
+  </div>
+</body>
+
 </html>
