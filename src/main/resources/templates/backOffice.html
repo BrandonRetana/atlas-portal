@@ -16,18 +16,21 @@
 				<tr>
 					<th>ID</th>
 					<th>Nombre</th>
-					<th>Acciones</th>
+					<th>Autor</th>
+					<th>Año de publicacion</th>
 				</tr>
 			</thead>
 			<tbody>
 				<!-- Itera sobre la lista de clases taxonómicas y muestra los datos en la tabla -->
-				<tr th:each="clase : ${clases}">
-					<td th:text="${clase.id}"></td>
-					<td th:text="${clase.nombre}"></td>
+				<tr th:each="species : ${species}">
+					<td th:text="${species.Id}"></td>
+					<td th:text="${species.scientificName}"></td>
+					<td th:text="${species.author}"></td>
+					<td th:text="${species.publicattionYear}"></td>
 					<td>
 						<!-- Agrega botones para editar y eliminar cada clase taxonómica -->
-						<a class="btn btn-primary" th:href="@{/clases/editar/{id}(id=${clase.id})}"><i class="fas fa-edit"></i> Editar</a>
-						<a class="btn btn-danger" th:href="@{/clases/eliminar/{id}(id=${clase.id})}"><i class="fas fa-trash-alt"></i> Eliminar</a>
+						<a class="btn btn-primary" th:href="@{/clases/editar/{id}(id=${species.id})}"><i class="fas fa-edit"></i> Editar</a>
+						<a class="btn btn-danger" th:href="@{/clases/eliminar/{id}(id=${species.id})}"><i class="fas fa-trash-alt"></i> Eliminar</a>
 					</td>
 				</tr>
 			</tbody>

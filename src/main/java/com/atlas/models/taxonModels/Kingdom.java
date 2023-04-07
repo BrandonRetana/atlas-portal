@@ -9,11 +9,67 @@ import jakarta.persistence.Table;
 @Table(name = "Kingdom")
 public class Kingdom extends Taxon{
 
-    public Kingdom(long id, String scientificName, String author, int publicattionYear, long ancestorID) {
-        super(id, scientificName, author, publicattionYear, ancestorID, "Kingdom");
+    public Kingdom( String scientificName, String author, int publicattionYear) {
+        super( scientificName, author, publicattionYear);
     }
 
     public Kingdom(){}
+
+    @Override
+    public String getAuthor() {
+        // TODO Auto-generated method stub
+        return super.getAuthor();
+    }
+
+    @Override
+    public long getId() {
+        // TODO Auto-generated method stub
+        return super.getId();
+    }
+
+    @Override
+    public int getPublicattionYear() {
+        // TODO Auto-generated method stub
+        return super.getPublicattionYear();
+    }
+
+    @Override
+    public String getScientificName() {
+        // TODO Auto-generated method stub
+        return super.getScientificName();
+    }
+
+    @Override
+    public void setAuthor(String author) {
+        // TODO Auto-generated method stub
+        super.setAuthor(author);
+    }
+
+    @Override
+    public void setId(long id) {
+        // TODO Auto-generated method stub
+        super.setId(id);
+    }
+
+    @Override
+    public void setPublicattionYear(int publicattionYear) {
+        // TODO Auto-generated method stub
+        super.setPublicattionYear(publicattionYear);
+    }
+
+    @Override
+    public void setScientificName(String scientificName) {
+        // TODO Auto-generated method stub
+        super.setScientificName(scientificName);
+    }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString();
+    }
+
+    
 
 
 }
