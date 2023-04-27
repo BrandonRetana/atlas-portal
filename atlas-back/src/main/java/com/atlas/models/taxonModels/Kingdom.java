@@ -51,10 +51,12 @@ public class Kingdom extends Taxon{
         super.setId(id);
     }
 
+    
+
     @Override
-    public void setPublicattionYear(int publicattionYear) {
+    public void setPublicattionYear(long l) {
         // TODO Auto-generated method stub
-        super.setPublicattionYear(publicattionYear);
+        super.setPublicattionYear(l);
     }
 
     @Override

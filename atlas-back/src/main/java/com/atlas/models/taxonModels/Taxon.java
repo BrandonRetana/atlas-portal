@@ -64,8 +64,8 @@ public abstract class Taxon {
         return publicattionYear;
     }
 
-    public void setPublicattionYear(int publicattionYear) {
-        this.publicattionYear = publicattionYear;
+    public void setPublicattionYear(long l) {
+        this.publicattionYear = (int) l;
     }
 
     @Override
