@@ -8,6 +8,10 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { FormImageComponent } from './form-image/form-image.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SingleImageInfoComponent } from './single-image-info/single-image-info.component';
+import { FormTaxonComponent } from './form-taxon/form-taxon.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -16,12 +20,16 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     GalleryComponent,
     FormImageComponent,
-    BackOfficeComponent
+    BackOfficeComponent,
+    SingleImageInfoComponent,
+    FormTaxonComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

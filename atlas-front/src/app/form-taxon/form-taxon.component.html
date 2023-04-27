@@ -1,0 +1,81 @@
+<div class="titulo">
+  <h1>Crear Taxon</h1>
+</div>
+
+<div>
+  <form [formGroup]="TaxonForm" (ngSubmit)="submit()">
+
+<!--Selector para la clase taxonomica-->
+<label for="Ancestro">Nivel en la jerarquia:</label>
+    <div class="d-flex justify-content-around">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ TaxonForm.controls["typeClass"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" (click)="setClass('kingdom')">kingdom</a></li>
+          <li><a class="dropdown-item" (click)="setClass('phylum')">phylum</a></li>
+          <li><a class="dropdown-item" (click)="setClass('class')">class</a></li>
+          <li><a class="dropdown-item" (click)="setClass('order')">order</a></li>
+          <li><a class="dropdown-item" (click)="setClass('family')">family</a></li>
+          <li><a class="dropdown-item" (click)="setClass('genus')">genus</a></li>
+          <li><a class="dropdown-item" (click)="setClass('species')">specie</a></li>
+        </ul>
+      </div>
+    </div>
+
+<!-- input para el nombre cientifico-->
+    <label for="nombre-cientifico">Nombre científico:</label>
+    <input type="text" formControlName="scientificName" />
+
+<!--Selector del Autor-->
+    <label for="autor">Autor:</label>
+    <div class="d-flex justify-content-around">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ TaxonForm.controls["authorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setSelectorAuthor('2', 'author.name')">Action</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+      <button type="button" routerLink="/">Agregar</button>
+    </div>
+
+<!--Input del anno del publicacion -->
+    <label for="anno-publicacion">Año de publicación:</label>
+    <input formControlName="publicationYear" type="number" />
+  
+<!--Selector del ancestro del taxon-->
+    <label for="Ancestro">Ancestro del taxón:</label>
+    <div class="d-flex justify-content-around">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ TaxonForm.controls["ancestorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setAncestor('2', 'sds')">Action</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+      <button type="button" onclick="agregarAscendente()">Agregar</button>
+    </div>
+
+
+
+  
+
+    <button type="submit" [disabled]="TaxonForm.invalid">Enviar</button>
+  </form>
+  {{ TaxonForm.value | json }}
+</div>
