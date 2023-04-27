@@ -1,0 +1,19 @@
+.gallery {
+	margin-top: 80px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-gap: 10px;
+  }
+  
+  .gallery img:not(.navbar-logo) {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: 5px;
+  }
+  
+  .square {
+	height: 200px;
+	width: 200px;
+  }
+  

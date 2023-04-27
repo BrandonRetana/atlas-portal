@@ -11,7 +11,7 @@ RUN apt-get install -y maven
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY /atlas-back /app
 
 # Set the default command to run when the container starts
 CMD tail -f /dev/null

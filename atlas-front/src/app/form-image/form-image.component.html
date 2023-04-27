@@ -1,0 +1,151 @@
+    <div class="title">
+      <h1>Agregar un imagen</h1>
+    </div>
+  
+    <div class="container">
+      <form id="taxonomic-form" action="/submit/taxonomic" method="POST">
+        <!----Contenedor del drag and drop-->
+        <div class="drag-drop-box">
+          <h2>Arrastra y suelta las imágenes aquí</h2>
+          <p>O haz clic para seleccionarlas</p>
+        </div>
+  
+        <!----Contenedor de las preguntas-->
+        <div class="preg">
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion"></textarea>
+          <br>
+          <br>
+          <label for="fecha-creacion">Fecha de creación:</label>
+          <input type="date" id="fecha-creacion" name="fecha-creacion">
+        </div>
+  
+        <!--Chechbox multiselccion-->
+        <br>
+        <fieldset class="palabras-clave">
+          <legend>Selecciona tus palabras clave:</legend>
+          <input type="checkbox" id="palabra1" name="palabra1" value="palabra1">
+          <label for="palabra1">Palabra 1</label><br>
+          <input type="checkbox" id="palabra2" name="palabra2" value="palabra2">
+          <label for="palabra2">Palabra 2</label><br>
+          <input type="checkbox" id="palabra3" name="palabra3" value="palabra3">
+          <label for="palabra3">Palabra 3</label><br>
+        </fieldset>
+  
+        <!--Selector del autor-->
+        <br>
+        <div class="selector-autor">
+          <label for="Autor">Autor:</label>
+          <select name="reino" id="reino">
+            <option value="animalia">Maria</option>
+            <option value="plantae">Juan</option>
+            <option value="fungi">Eddy</option>
+          </select>
+        </div>
+  
+        <!--Slector del propietario-->
+        <br>
+        <div class="selector-owner">
+          <label for="Autor">Propietario:</label>
+          <select name="reino" id="reino">
+            <option value="animalia">INBio</option>
+            <option value="plantae">Juan</option>
+            <option value="fungi">Eddy</option>
+          </select>
+        </div>
+  
+        <!--Selector de la licencia-->
+        <br>
+        <div class="selector-licencia">
+          <label for="Autor">Licencia:</label>
+          <select name="reino" id="reino">
+            <option value="animalia">MIT</option>
+            <option value="plantae">Juan</option>
+            <option value="fungi">Eddy</option>
+          </select>
+        </div>
+  
+        <!----Contenedor de los selectores-->
+        <div class="selectors">
+          <div class="selector">
+            <label for="reino">Reino:</label>
+            <select name="reino" id="reino">
+              <option value="animalia">Animalia</option>
+              <option value="plantae">Plantae</option>
+              <option value="fungi">Fungi</option>
+            </select>
+            <button type="button" class="btn-create">Crear</button>
+          </div>
+  
+  
+          <div class="selector">
+            <label for="phylum">Phylum:</label>
+            <select name="phylum" id="phylum">
+              <option value="chordata">Chordata</option>
+              <option value="arthropoda">Arthropoda</option>
+              <option value="mollusca">Mollusca</option>
+            </select>
+            <button type="button" class="btn-create">Crear</button>
+          </div>
+  
+  
+          <div class="selector">
+            <label for="clase">Clase:</label>
+            <select name="clase" id="clase">
+              <option value="mammalia">Mammalia</option>
+              <option value="insecta">Insecta</option>
+              <option value="cephalopoda">Cephalopoda</option>
+            </select>
+            <button type="button" class="btn-create">Crear</button>
+          </div>
+  
+  
+          <div class="selector">
+            <label for="phylum">Orden:</label>
+            <select name="phylum" id="phylum">
+              <option value="chordata">Chordata</option>
+              <option value="arthropoda">Arthropoda</option>
+              <option value="mollusca">Mollusca</option>
+            </select>
+            <button type="button" class="btn-create">Crear</button>
+          </div>
+  
+          <div class="selector">
+            <label for="phylum">Familia:</label>
+            <select name="phylum" id="phylum">
+              <option value="chordata">Chordata</option>
+              <option value="arthropoda">Arthropoda</option>
+              <option value="mollusca">Mollusca</option>
+            </select>
+            <button type="button" class="btn-create">Crear</button>
+          </div>
+  
+          <div class="selector">
+            <label for="phylum">Genero:</label>
+            <select name="phylum" id="phylum">
+              <option value="chordata">Chordata</option>
+              <option value="arthropoda">Arthropoda</option>
+              <option value="mollusca">Mollusca</option>
+            </select>
+            <button type="button" class="btn-create">Crear</button>
+          </div>
+  
+  
+          <div class="selector">
+            <label for="phylum">Especie:</label>
+            <select name="phylum" id="phylum">
+              <option value="chordata">Chordata</option>
+              <option value="arthropoda">Arthropoda</option>
+              <option value="mollusca">Mollusca</option>
+            </select>
+            <button type="button" class="btn-create">Crear</button>
+            <br><br>
+            <button type="submit">Enviar</button>
+    </div>
+    
+    </div>
+      </form>
+    </div>
+    
+        
+          
