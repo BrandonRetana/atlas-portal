@@ -2,6 +2,7 @@ package com.atlas.service;
 
 import com.atlas.repository.KingdomRepository;
 import com.atlas.models.taxonModels.Kingdom;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,13 @@ import java.util.Optional;
 @Service
 public class KingdomService {
 
+    @Autowired
     private KingdomRepository kingdomRepository;
 
-
-    @Autowired
-    public KingdomService(KingdomRepository kingdomRepository) {
-        this.kingdomRepository = kingdomRepository;
+    @Transactional
+    public void addKingdom(Kingdom kingdom) {
+        System.out.println("Jola1");
+        kingdomRepository.save(kingdom);
     }
 
     public Kingdom getKingdomById(long id) {
@@ -32,9 +34,7 @@ public class KingdomService {
         return kingdomRepository.findAll();
     } 
 
-    public Kingdom addKingdom(Kingdom kingdom) {
-        return kingdomRepository.save(kingdom);
-    }
+
     public Kingdom updateKingdom(Kingdom kingdom) {
         return kingdomRepository.save(kingdom);
     }

@@ -36,22 +36,10 @@ public class KingdomController {
         return kingdomService.getKingdomById(id);
     }
 
-    @PostMapping("/")
-    public Kingdom createKingdom(@RequestBody Kingdom kingdom) {
-        return kingdomService.addKingdom(kingdom);
-    }
-
-    @GetMapping("/ktest")
-    @Transactional
-    public void createKingdomTest() {
-        System.out.println("Hola");
-        Kingdom k = new Kingdom();
-        k.setId(100);
-        k.setAuthor("sdf");
-        k.setPublicattionYear(100);
-        k.setScientificName("EDditus");
-        kingdomRepository.save(k);
-    }
+    //@PostMapping("/")
+    //public Kingdom createKingdom(@RequestBody Kingdom kingdom) {
+   //     return kingdomService.addKingdom(kingdom);
+  //  }
 
     @PutMapping("/")
     public Kingdom updateKingdom(@RequestBody Kingdom kingdom) {
