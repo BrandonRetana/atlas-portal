@@ -1,7 +1,7 @@
 package com.atlas.controller;
 
 
-import java.io.File;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
+
+
 @Controller
 @RequestMapping
 public class ImageController {
@@ -26,34 +28,22 @@ public class ImageController {
         return "formImage";
     }
 
-    @PostMapping("/upload")
-public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
-    System.out.println("Nombre del archivo recibido: " + file.getOriginalFilename());
 
-    try {
-        // Obtiene la ruta absoluta de la carpeta "static"
-        String rootPath = System.getProperty("user.dir");
-        String staticPath = rootPath + "/src/main/resources/static/";
-
-        // Crea el archivo en la carpeta "static/img"
-        File dir = new File(staticPath + "img/");
-        if (!dir.exists()) {
-            dir.mkdirs();
+    @PostMapping("/upload/image")
+    public ResponseEntity<String> uploadFile(@RequestParam("image") MultipartFile file) {
+        try {
+            System.out.println("LLego");
+            Path path = Paths.get("/home/brandon/Git/atlas-portal/atlas-front/src/assets/" + file.getOriginalFilename());
+            Files.write(path, file.getBytes());
+            return ResponseEntity.ok("Archivo cargado con éxito");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al cargar el archivo");
         }
-        Path path = Paths.get(staticPath + "img/" + file.getOriginalFilename());
-        Files.write(path, file.getBytes());
-        System.out.println("Ruta absoluta de la carpeta static: " + staticPath);
-
-
-        return new ResponseEntity<>("Archivo cargado correctamente", HttpStatus.OK);
-
-    } catch (IOException e) {
-        e.printStackTrace();
-        return new ResponseEntity<>("Error al cargar el archivo", HttpStatus.INTERNAL_SERVER_ERROR);
     }
-}
 
 
-    
+
+
+
 
 }

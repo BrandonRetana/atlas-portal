@@ -10,7 +10,7 @@ import { BackOfficeComponent } from './back-office/back-office.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SingleImageInfoComponent } from './single-image-info/single-image-info.component';
 import { FormTaxonComponent } from './form-taxon/form-taxon.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -29,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
