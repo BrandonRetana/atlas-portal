@@ -1,16 +1,18 @@
 package com.atlas.models.taxonModels;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
 @Entity
-@Table(name = "Kingdom")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Kingdom extends Taxon{
 
-    public Kingdom( String scientificName, String author, int publicattionYear) {
-        super( scientificName, author, publicattionYear);
+    public Kingdom(String scientificName, String author, int publicattionYear) {
+        super(scientificName, author, publicattionYear);
     }
 
     public Kingdom(){}
@@ -51,8 +53,6 @@ public class Kingdom extends Taxon{
         super.setId(id);
     }
 
-    
-
     @Override
     public void setPublicattionYear(long l) {
         // TODO Auto-generated method stub
@@ -70,8 +70,6 @@ public class Kingdom extends Taxon{
         // TODO Auto-generated method stub
         return super.toString();
     }
-
-    
 
 
 }

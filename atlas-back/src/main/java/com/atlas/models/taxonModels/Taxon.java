@@ -1,16 +1,18 @@
 package com.atlas.models.taxonModels;
 
-import javax.validation.constraints.NotNull;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "taxon")
+@MappedSuperclass
+
 public abstract class Taxon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -26,6 +26,7 @@ public class PhylumService{
     }
 
     public Phylum addPhylum(Phylum phylum) {
+        System.out.println("entra al service");
         return phylumRepository.save(phylum);
     }
 

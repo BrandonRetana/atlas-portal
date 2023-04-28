@@ -21,7 +21,7 @@ public class BackOfficeController {
     @Autowired
     private KingdomService kingdomService;
 
-    @GetMapping("/back/office")
+    @GetMapping("/back/office") 
     public @ResponseBody Map<String, Object> getBackOffice(){
         Map<String, Object> response = new HashMap<>();
         List<Kingdom> species = kingdomService.getAllKingdoms();
@@ -29,7 +29,7 @@ public class BackOfficeController {
         return response;
     }
 
-    @GetMapping("/test")
+    @GetMapping("/test") 
     public String test(){
         Kingdom k = new Kingdom("prueba", "Eddy", 2003);
         kingdomService.addKingdom(k);

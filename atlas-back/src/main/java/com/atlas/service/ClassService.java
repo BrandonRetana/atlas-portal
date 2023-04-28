@@ -1,7 +1,7 @@
 package com.atlas.service;
 
 import com.atlas.repository.ClassRepository;
-import com.atlas.models.taxonModels.Class;
+import com.atlas.models.taxonModels.TClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,8 @@ public class ClassService {
         this.classRepository = classRepository;
     }
 
-    public Class getClassById(long id) {
-       Optional<Class> class1 = classRepository.findById(id);
+    public TClass getClassById(long id) {
+       Optional<TClass> class1 = classRepository.findById(id);
        if (class1.isPresent()) {
            return class1.get();
        } else {
@@ -26,15 +26,15 @@ public class ClassService {
        }
     }
 
-    public List<Class> getAllClasses() {
+    public List<TClass> getAllClasses() {
         return classRepository.findAll();
     }
 
-    public Class addClass(Class class1) {
+    public TClass addClass(TClass class1) {
         return classRepository.save(class1);
     }
 
-    public Class updateClass(Class class1) {
+    public TClass updateClass(TClass class1) {
         return classRepository.save(class1);
     }
 

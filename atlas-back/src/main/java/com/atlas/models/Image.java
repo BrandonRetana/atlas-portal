@@ -45,9 +45,7 @@ public class Image {
     @NotNull
     private String license;
 
-    @OneToMany
-    private List<Taxon> taxon;
-
+ 
     private String path;
 
     public Image (){}
@@ -93,14 +91,7 @@ public class Image {
         this.license = license;
     }
 
-    public List<Taxon> getTaxon() {
-        return taxon;
-    }
-
-    public void setTaxon(List<Taxon> taxon) {
-        this.taxon = taxon;
-    }
-
+  
     public String getPath() {
         return path;
     }
