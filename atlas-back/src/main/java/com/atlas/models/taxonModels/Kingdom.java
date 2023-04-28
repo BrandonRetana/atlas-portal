@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 @Table(name = "Kingdom")
 public class Kingdom extends Taxon{
 
-    public Kingdom( String scientificName, String author, int publicattionYear) {
+    public Kingdom(String scientificName, String author, int publicattionYear) {
         super( scientificName, author, publicattionYear);
     }
 

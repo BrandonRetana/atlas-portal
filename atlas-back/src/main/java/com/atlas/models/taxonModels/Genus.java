@@ -13,7 +13,7 @@ public class Genus extends Taxon{
     @Column(name = "taxon_acestor_id")
     public long ancestorID;
 
-    public Genus(long id, String scientificName, String author, int publicattionYear, long ancestorID) {
+    public Genus(String scientificName, String author, int publicattionYear, long ancestorID) {
         super(scientificName, author, publicattionYear);
         this.ancestorID = ancestorID;
     }
