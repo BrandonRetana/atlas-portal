@@ -17,7 +17,6 @@ public class KingdomService {
 
     @Transactional
     public void addKingdom(Kingdom kingdom) {
-        System.out.println("Jola1");
         kingdomRepository.save(kingdom);
     }
 
@@ -34,11 +33,14 @@ public class KingdomService {
         return kingdomRepository.findAll();
     } 
 
-
+    
+    @Transactional
     public Kingdom updateKingdom(Kingdom kingdom) {
         return kingdomRepository.save(kingdom);
     }
 
+    
+    @Transactional
     public void deleteKingdom(long id) {
         kingdomRepository.deleteById(id);
     }

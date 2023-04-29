@@ -3,6 +3,7 @@ package com.atlas.service;
 import com.atlas.repository.ClassRepository;
 import com.atlas.models.taxonModels.Class;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,14 +31,20 @@ public class ClassService {
         return classRepository.findAll();
     }
 
+    
+    @Transactional
     public Class addClass(Class class1) {
         return classRepository.save(class1);
     }
 
+    
+    @Transactional
     public Class updateClass(Class class1) {
         return classRepository.save(class1);
     }
 
+    
+    @Transactional
     public void deleteClass(long id) {
         classRepository.deleteById(id);
     }

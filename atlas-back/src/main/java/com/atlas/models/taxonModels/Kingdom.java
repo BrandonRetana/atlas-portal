@@ -9,8 +9,8 @@ import jakarta.persistence.Table;
 @Table(name = "kingdom")
 public class Kingdom extends Taxon{
 
-    public Kingdom( String scientificName, String author, int publicattionYear) {
-        super( scientificName, author, publicattionYear);
+    public Kingdom(String scientificName, String author, int publicationYear) {
+        super( scientificName, author, publicationYear);
     }
 
     public Kingdom(){}
@@ -28,9 +28,9 @@ public class Kingdom extends Taxon{
     }
 
     @Override
-    public int getPublicattionYear() {
+    public int getPublicationYear() {
         // TODO Auto-generated method stub
-        return super.getPublicattionYear();
+        return super.getPublicationYear();
     }
 
     @Override
@@ -51,12 +51,12 @@ public class Kingdom extends Taxon{
         super.setId(id);
     }
 
-    
+
 
     @Override
-    public void setPublicattionYear(long l) {
+    public void setPublicationYear(int l) {
         // TODO Auto-generated method stub
-        super.setPublicattionYear(l);
+        super.setPublicationYear(l);
     }
 
     @Override
