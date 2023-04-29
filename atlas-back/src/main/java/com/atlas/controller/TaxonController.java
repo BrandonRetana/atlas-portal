@@ -29,7 +29,7 @@ import com.atlas.models.taxonModels.Class;
 
 
 @RestController
-@RequestMapping("/taxons")
+@RequestMapping()
 public class TaxonController {
 
     @Autowired
@@ -48,7 +48,7 @@ public class TaxonController {
     private SpeciesService speciesService;
 
 
-    @PostMapping("/create")
+    @PostMapping("/create/taxon")
     public @ResponseBody Map<String, String> getTaxon(@RequestBody Map<String, Object> data,   RedirectAttributes redirectAttributes){
 
         Map<String, String> response = new HashMap<>();
@@ -63,6 +63,7 @@ public class TaxonController {
                     kingdom.setScientificName((String) data.get("scientificName"));
                     kingdom.setAuthor((String) data.get("author"));
                     kingdom.setPublicationYear((int) data.get("publicationYear"));
+                    kingdom.setAncestorID(0);
                     kingdomService.addKingdom(kingdom);
                     break;
 
@@ -219,23 +220,25 @@ public class TaxonController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteTaxon(@PathVariable("id") long id) {
-        Taxon taxon = getTaxon(id);
+    public void deleteTaxon(@PathVariable("id") String id) {
+        System.out.println(id);
+        long longId = Long.parseLong(id);
+        Taxon taxon = getTaxon(longId);
         if (taxon != null) {
             if (taxon instanceof Kingdom) {
-                kingdomService.deleteKingdom(id);
+                kingdomService.deleteKingdom(longId);
             } else if (taxon instanceof Phylum) {
-                phylumService.deletePhylum(id);
+                phylumService.deletePhylum(longId);
             } else if (taxon instanceof Class) {
-                classService.deleteClass(id);
+                classService.deleteClass(longId);
             } else if (taxon instanceof Order) {
-                orderService.deleteOrder(id);
+                orderService.deleteOrder(longId);
             } else if (taxon instanceof Family) {
-                familyService.deleteFamily(id);
+                familyService.deleteFamily(longId);
             } else if (taxon instanceof Genus) {
-                genusService.deleteGenus(id);
+                genusService.deleteGenus(longId);
             } else if (taxon instanceof Species) {
-                speciesService.deleteSpecies(id);
+                speciesService.deleteSpecies(longId);
             }
         }
     }

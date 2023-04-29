@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackOfficeService } from '../service/back-office.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-back-office',
@@ -8,22 +9,5 @@ import { BackOfficeService } from '../service/back-office.service';
 
 
 })
-export class BackOfficeComponent implements OnInit{
-  constructor(private officeService:BackOfficeService){
-  }
-
-  ngOnInit() {
-    this.callService();
-  }
-
-  public data: Array<any> = [];
-
-  public callService(){
-    this.officeService.getEddis().subscribe(data=>{
-      this.data = data["species"];
-      console.log(data);
-    },error => {
-      console.log("404 not found")
-    })
-  }
+export class BackOfficeComponent {
 }

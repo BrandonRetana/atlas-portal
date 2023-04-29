@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SingleImageInfoComponent } from './single-image-info/single-image-info.component';
 import { FormTaxonComponent } from './form-taxon/form-taxon.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TableKingdomComponent } from './taxon-tables/table-kingdom/table-kingdom.component';
 
 
 
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BackOfficeComponent,
     SingleImageInfoComponent,
     FormTaxonComponent,
+    TableKingdomComponent,
 
   ],
   imports: [
