@@ -3,6 +3,7 @@ package com.atlas.service;
 import com.atlas.repository.OrderRepository;
 import com.atlas.models.taxonModels.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,14 +26,20 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    
+    @Transactional
     public Order addOrder(Order order) {
         return orderRepository.save(order);
     }
 
+    
+    @Transactional
     public Order updateOrder(Order order) {
         return orderRepository.save(order);
     }
 
+    
+    @Transactional
     public void deleteOrder(long id) {
         orderRepository.deleteById(id);
     }

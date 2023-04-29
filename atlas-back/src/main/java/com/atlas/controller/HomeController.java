@@ -25,7 +25,7 @@ public class HomeController {
         System.out.println("Hola");
         Kingdom k = new Kingdom();
         k.setAuthor("sdf");
-        k.setPublicattionYear(100);
+        k.setPublicationYear(100);
         k.setScientificName("EDditus");
         kingdomService.addKingdom(k);
     }

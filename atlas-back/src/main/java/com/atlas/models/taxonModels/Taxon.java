@@ -24,14 +24,16 @@ public abstract class Taxon {
     private String author;
 
     @Column(name = "publication_year")
-    private int publicattionYear;
+    private int publicationYear;
+
+    @Column(name = "taxon_acestor_id")
+    public long ancestorID;
 
 
-
-    public Taxon( @NotNull String scientificName, String author, int publicattionYear) {
+    public Taxon( @NotNull String scientificName, String author, int publicationYear) {
         this.scientificName = scientificName;
         this.author = author;
-        this.publicattionYear = publicattionYear;
+        this.publicationYear = publicationYear;
     }
 
     public Taxon(){}
@@ -60,18 +62,28 @@ public abstract class Taxon {
         this.author = author;
     }
 
-    public int getPublicattionYear() {
-        return publicattionYear;
+    public int getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setPublicattionYear(long l) {
-        this.publicattionYear = (int) l;
+    public void setPublicationYear(int l) {
+        this.publicationYear = l;
     }
 
+    public long getAncestorID() {
+        return ancestorID;
+    }
+
+    public void setAncestorID(long ancestorID) {
+        this.ancestorID = ancestorID;
+    }
+
+
+    
     @Override
     public String toString() {
-        return "Taxon [id=" + id + ", scientificName=" + scientificName + ", author=" + author + ", publicattionYear="
-                + publicattionYear + "]";
+        return "Taxon [id=" + id + ", scientificName=" + scientificName + ", author=" + author + ", publicationYear="
+                + publicationYear + "]";
     }
 
     

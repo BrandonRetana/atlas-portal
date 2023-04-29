@@ -3,6 +3,7 @@ package com.atlas.service;
 import com.atlas.repository.FamilyRepository;
 import com.atlas.models.taxonModels.Family;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,14 +32,20 @@ public class FamilyService {
         return familyRepository.findAll();
     }
 
+    
+    @Transactional
     public Family addFamily(Family family) {
         return familyRepository.save(family);
     }
 
+    
+    @Transactional
     public Family updateFamily(Family family) {
         return familyRepository.save(family);
     }
 
+    
+    @Transactional
     public void deleteFamily(long id) {
         familyRepository.deleteById(id);
     }

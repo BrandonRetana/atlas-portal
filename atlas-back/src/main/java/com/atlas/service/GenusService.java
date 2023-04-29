@@ -3,6 +3,7 @@ package com.atlas.service;
 import com.atlas.repository.GenusRepository;
 import com.atlas.models.taxonModels.Genus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,18 +28,24 @@ public class GenusService {
        }
     }
 
-    public List<Genus> getAllGenera() {
+    public List<Genus> getAllGenus() {
         return genusRepository.findAll();
     }
 
+    
+    @Transactional
     public Genus addGenus(Genus genus) {
         return genusRepository.save(genus);
     }
 
+    
+    @Transactional
     public Genus updateGenus(Genus genus) {
         return genusRepository.save(genus);
     }
 
+    
+    @Transactional
     public void deleteGenus(long id) {
         genusRepository.deleteById(id);
     }
