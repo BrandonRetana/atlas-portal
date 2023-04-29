@@ -54,7 +54,7 @@ public class TaxonController {
         String type = (String) data.get("typeClass");
         System.out.println("llega");
 
-        if (data.get("id") != null){ //update
+        if (data.get("id") != ""){ //update
             switch (type) {
                 case "kingdom":
                     Kingdom kingdom = new Kingdom();
@@ -151,7 +151,7 @@ public class TaxonController {
                     phylum.setScientificName((String) data.get("scientificName"));
                     phylum.setAuthor((String) data.get("author"));
                     phylum.setPublicationYear((int) data.get("publicationYear"));
-                    phylum.setAncestorID(55);
+                    phylum.setAncestorID((int) data.get("ancestor"));
                     System.out.println("phylum");
                     phylumService.addPhylum(phylum);
                     break;
