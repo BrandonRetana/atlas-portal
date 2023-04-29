@@ -11,9 +11,9 @@ import java.util.List;
 @Service
 public class SpeciesService {
 
+    @Autowired
     SpeciesRepository speciesRepository;
 
-    @Autowired
     public SpeciesService(SpeciesRepository speciesRepository) {
         this.speciesRepository = speciesRepository;
     }
