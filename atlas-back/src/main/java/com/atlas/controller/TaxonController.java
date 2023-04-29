@@ -187,7 +187,7 @@ public class TaxonController {
         return taxons;
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping("taxon/{id}")
     public Taxon getTaxon(@PathVariable("id") long id) {
         Taxon taxon = null;
         taxon = kingdomService.getKingdomById(id);
