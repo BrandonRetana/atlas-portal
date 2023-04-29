@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ImageService } from '../service/image.service';
 
 
 @Component({
@@ -10,12 +11,20 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class FormImageComponent {
   selectedFile: any;
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) { 
+  calendar: any;
+  
+  constructor(private service: ImageService, private formBuilder: FormBuilder) { 
   }
 
   public ImageForm = this.formBuilder.group({
-    selectedFile: [null, Validators.required]
+    selectedFile: [null, Validators.required],
+    imageName: ['', Validators.required],
+    imageDescription: ['', Validators.required],
+    myDate:['', Validators.required],
+    author:['', Validators.required],
+    authorName:['', Validators.required]
   });
+  
   
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -27,8 +36,12 @@ export class FormImageComponent {
   onSubmit(): void {
     const formData = new FormData();
     formData.append('image', this.selectedFile);
-    this.http.post('http://localhost:8080/upload/image', formData)
-      .subscribe(response => console.log(response));
+    this.service.submitImage(formData).subscribe(response => console.log(response));
+  }
+
+  public setAuthor(id:string, name:string){
+    this.ImageForm.controls['author'].setValue(id);
+    this.ImageForm.controls['authorName'].setValue(name);
   }
 
  

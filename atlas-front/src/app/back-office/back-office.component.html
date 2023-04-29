@@ -1,3 +1,7 @@
+<div class="titulo">
+    <h1>Agregar imagen</h1>
+  </div>
+  
 <div class="container">
     <h1>Clases taxonómicas</h1>
     <table class="table">
@@ -18,12 +22,12 @@
                 <td >{{species.publicattionYear}} </td>
                 <td>
                     <!-- Agrega botones para editar y eliminar cada clase taxonómica -->
-                    <a class="btn btn-primary" th:href=""><i class="fas fa-edit"></i> Editar</a>
-                    <a class="btn btn-danger" th:href=""><i class="fas fa-trash-alt"></i> Eliminar</a>
+                    <a class="btn btn-primary" > <i class="fas fa-edit"></i> Editar</a>
+                    <a class="btn btn-danger" > <i class="fas fa-trash-alt"></i> Eliminar</a>
                 </td>
             </tr>
         </tbody>
     </table>
     <!-- Agrega un botón para agregar una nueva clase taxonómica -->
-    <a class="btn btn-success" th:href="@{/clases/agregar}"><i class="fas fa-plus"></i> Agregar clase taxonómica</a>
+    <a class="btn btn-success" href="/create/taxon"><i class="fas fa-plus"></i> Agregar clase taxonómica</a>
 </div>

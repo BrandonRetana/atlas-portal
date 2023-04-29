@@ -1,3 +1,138 @@
 body{
-  color: ;
+  background-color: #001011;
+  margin: 0;
+  padding: 0;
+}
+
+.btn{
+  background-color: gray;
+}
+
+.btn:hover{
+  background-color: #449;
+}
+
+a{
+  cursor: pointer;
+}
+
+.author{
+  display: flex;
+  justify-content: space-around;
+}
+
+.titulo{
+text-align: center;
+color: white;
+}
+
+.titulo2{
+  text-align: center;
+  }
+  
+
+
+form {
+  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  height: 1000px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+select {
+  height: 38px;
+  display: inline-block;
+}
+
+button {
+  background-color: #5a5;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #494;
+}
+
+input[type="submit"] {
+  background-color: #55c;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  float:right
+}
+
+input[type="submit"]:hover {
+  background-color: #449;
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    max-width: 100%;
+    padding: 10px;
+  }
+}
+
+
+.selectors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.selector {
+  margin-right: 20px;
+}
+
+.selectors label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.selectors select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
 }

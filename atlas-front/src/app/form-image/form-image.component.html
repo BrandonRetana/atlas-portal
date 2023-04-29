@@ -1,15 +1,243 @@
-<form [formGroup]="ImageForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="image">Image:</label>
-    <input type="file" id="image" name="image" (change)="onFileChange($event)" class="form-control-file" formControlName="selectedFile">
+<div class="titulo">
+  <h1>Agregar imagen</h1>
+</div>
+
+<div class="form-container">
+  <form [formGroup]="ImageForm" (ngSubmit)="onSubmit()">
+    <!--Imagen-->
+    <div>
+      <label for="image">Image:</label>
+      <input type="file" id="image" name="image" (change)="onFileChange($event)" formControlName="selectedFile">
+    </div>
+    <!--Nombre-->
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" class="form-control input-style" formControlName="imageName">
+    </div>
+
+    <!--descripcion-->
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" class="form-control input-style"
+        formControlName="imageDescription"></textarea>
+    </div>
+
+    <!--fecha-->
+    <div class="form-group">
+      <label for="fecha-creacion">Fecha de creación:</label>
+      <input type="date" id="fecha-creacion" name="fecha-creacion" class="input-style">
+    </div>
+
+    <!--Palabras clave-->
+    <div class="checkboxs">
+    <div class="form-group">
+      <h5>Palabras claves</h5>
+      <input type="checkbox" id="checkbox1" class="form-check-input" formControlName="checkbox1">
+      <label for="checkbox1" class="form-check-label">Checkbox 1</label>
+    </div>
+    <div class="form-group">
+      <input type="checkbox" id="checkbox2" class="form-check-input" formControlName="checkbox2">
+      <label for="checkbox2" class="form-check-label">Checkbox 2</label>
+    </div>
+    <div class="form-group">
+      <input type="checkbox" id="checkbox3" class="form-check-input" formControlName="checkbox3">
+      <label for="checkbox3" class="form-check-label">Checkbox 3</label>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" class="form-control" formControlName="imageName">
-  </div>
-  <div class="form-group">
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" class="form-control" formControlName="imageDescription"></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+
+    <!--selector author-->
+    <label for="Ancestro">Author:</label>
+    <div class="d-flex ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ ImageForm.controls["authorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!--selector propietario-->
+    <label for="Ancestro">Propietario:</label>
+    <div class="d-flex ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ ImageForm.controls["authorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!--selector licencia-->
+    <label for="Ancestro">Licencia:</label>
+    <div class="d-flex ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ ImageForm.controls["authorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="titulo2">
+      <label>Clases taxonomica</label>
+    </div>
+
+
+    <div class="selectors">
+      <!--kingdom-->
+    <label for="Ancestro">Reino:</label>
+      <div class="d-flex ">
+        <div class="selector">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            {{ ImageForm.controls["authorName"].value }}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+              <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+            </li>
+            <li><a class="dropdown-item">Another action</a></li>
+            <li><a class="dropdown-item">Something else here</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!--selector author-->
+    <label for="Ancestro">Filo:</label>
+    <div class="d-flex ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ ImageForm.controls["authorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!--selector Clase-->
+    <label for="Ancestro">Clase:</label>
+    <div class="d-flex ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ ImageForm.controls["authorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!--selector Order-->
+    <label for="Ancestro">Orden:</label>
+    <div class="d-flex ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ ImageForm.controls["authorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!--selector author-->
+    <label for="Ancestro">Familia:</label>
+    <div class="d-flex ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ ImageForm.controls["authorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!--selector author-->
+    <label for="Ancestro">Genero:</label>
+    <div class="d-flex ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ ImageForm.controls["authorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!--selector author-->
+    <label for="Ancestro">Especie:</label>
+    <div class="d-flex ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ ImageForm.controls["authorName"].value }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+          </li>
+          <li><a class="dropdown-item">Another action</a></li>
+          <li><a class="dropdown-item">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+
+    </div>
+
+    
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
