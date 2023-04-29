@@ -38,14 +38,11 @@
           {{ TaxonForm.controls["authorName"].value }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <a class="dropdown-item" (click)="setSelectorAuthor('2', 'author.name')">Action</a>
+          <li *ngFor="let author of Authors">
+            <a class="dropdown-item" (click)="setSelectorAuthor(author.id, author.name)">{{ author.name }}</a>
           </li>
-          <li><a class="dropdown-item">Another action</a></li>
-          <li><a class="dropdown-item">Something else here</a></li>
         </ul>
       </div>
-      <button type="button" routerLink="/">Agregar</button>
     </div>
 
 <!--Input del anno del publicacion -->
@@ -68,7 +65,6 @@
           <li><a class="dropdown-item">Something else here</a></li>
         </ul>
       </div>
-      <button type="button" onclick="agregarAscendente()">Agregar</button>
     </div>
 
 

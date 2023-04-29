@@ -13,6 +13,10 @@ export class TaxonServiceService {
   private url: string = "http://localhost:8080/";
 
   public submit(taxonJson:any){
-    return this.http.post<any>(this.url+"create/taxon", taxonJson)
+    return this.http.post<any>(this.url+"create/taxon", taxonJson);
+  }
+
+  public getAuthors(){
+    return this.http.get<any>(this.url+"list/author");
   }
 }
