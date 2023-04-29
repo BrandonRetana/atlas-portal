@@ -2,14 +2,10 @@ package com.atlas.controller;
 
 import java.util.List;
 
+import com.atlas.repository.KingdomRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.atlas.service.KingdomService;
 import com.atlas.models.taxonModels.Kingdom;
@@ -18,6 +14,13 @@ import com.atlas.models.taxonModels.Kingdom;
 @RestController
 @RequestMapping("/kingdoms")
 public class KingdomController {
+
+    private final KingdomRepository kingdomRepository;
+
+    public KingdomController(KingdomRepository kingdomRepository) {
+        this.kingdomRepository = kingdomRepository;
+    }
+
 
     @Autowired
     private KingdomService kingdomService;
@@ -33,10 +36,10 @@ public class KingdomController {
         return kingdomService.getKingdomById(id);
     }
 
-    @PostMapping("/")
-    public Kingdom createKingdom(@RequestBody Kingdom kingdom) {
-        return kingdomService.addKingdom(kingdom);
-    }
+    //@PostMapping("/")
+    //public Kingdom createKingdom(@RequestBody Kingdom kingdom) {
+   //     return kingdomService.addKingdom(kingdom);
+  //  }
 
     @PutMapping("/")
     public Kingdom updateKingdom(@RequestBody Kingdom kingdom) {

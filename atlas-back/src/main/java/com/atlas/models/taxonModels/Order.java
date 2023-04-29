@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "Order")
+@Table(name = "Orders")
 public class Order extends Taxon{
 
     @Column(name = "taxon_acestor_id")

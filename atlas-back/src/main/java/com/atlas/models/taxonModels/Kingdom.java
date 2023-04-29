@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "Kingdom")
+@Table(name = "kingdom")
 public class Kingdom extends Taxon{
 
     public Kingdom(String scientificName, String author, int publicattionYear) {
