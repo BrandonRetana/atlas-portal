@@ -11,9 +11,11 @@ import java.util.Optional;
 
 @Service
 public class ClassService {
-    private ClassRepository classRepository;
 
     @Autowired
+    private ClassRepository classRepository;
+
+
     public ClassService(ClassRepository classRepository) {
         this.classRepository = classRepository;
     }

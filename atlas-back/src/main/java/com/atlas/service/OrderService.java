@@ -11,9 +11,10 @@ import java.util.List;
 @Service
 public class OrderService {
 
+    @Autowired
     OrderRepository orderRepository;
 
-    @Autowired
+
     public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }

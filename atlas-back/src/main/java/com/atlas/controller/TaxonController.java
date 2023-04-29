@@ -48,85 +48,157 @@ public class TaxonController {
     private SpeciesService speciesService;
 
 
-    public @ResponseBody Map<String, String> getTaxon(@RequestBody Map<String, Object> data,   RedirectAttributes redirectAttributes){
+    public @ResponseBody Map<String, String> createTaxon(@RequestBody Map<String, Object> data,   RedirectAttributes redirectAttributes){
 
         Map<String, String> response = new HashMap<>();
         String type = (String) data.get("typeClass");
         System.out.println("llega");
 
-        switch (type) {
-            case "kingdom":
-                Kingdom kingdom = new Kingdom();
-                kingdom.setScientificName((String) data.get("scientificName"));
-                kingdom.setAuthor((String) data.get("author"));
-                kingdom.setPublicationYear((int) data.get("publicationYear"));
-                kingdomService.addKingdom(kingdom);
-                break;
+        if (data.get("id") != null){ //update
+            switch (type) {
+                case "kingdom":
+                    Kingdom kingdom = new Kingdom();
+                    kingdom.setScientificName((String) data.get("scientificName"));
+                    kingdom.setAuthor((String) data.get("author"));
+                    kingdom.setPublicationYear((int) data.get("publicationYear"));
+                    kingdom.setId((long) data.get("id"));
+                    kingdomService.updateKingdom(kingdom);
+                    break;
 
-            case "genus":
-                Genus genus = new Genus((String) data.get("scientificName"),(String) data.get("author"), (int) data.get("publicationYear"), (long) data.get("ancestorID"));
-                genusService.addGenus(genus);
-                break;
+                case "genus":
+                    Genus genus = new Genus((String) data.get("scientificName"),(String) data.get("author"), (int) data.get("publicationYear"), (long) data.get("ancestorID"));
+                    genus.setId((long) data.get("id"));
+                    genusService.updateGenus(genus);
+                    break;
 
-            case "phylum":
-                Phylum phylum = new Phylum();
-                System.out.println("llegaaaaaaa");
-                phylum.setScientificName((String) data.get("scientificName"));
-                phylum.setAuthor((String) data.get("author"));
-                phylum.setPublicationYear((int) data.get("publicationYear"));
-                phylum.setAncestorID(55);
-                System.out.println("phylum");
-                phylumService.addPhylum(phylum);
-                break;
+                case "phylum":
+                    Phylum phylum = new Phylum();
+                    System.out.println("llegaaaaaaa");
+                    phylum.setScientificName((String) data.get("scientificName"));
+                    phylum.setAuthor((String) data.get("author"));
+                    phylum.setPublicationYear((int) data.get("publicationYear"));
+                    phylum.setAncestorID(55);
+                    phylum.setId((long) data.get("id"));
+                    System.out.println("phylum");
+                    phylumService.updatePhylum(phylum);
+                    break;
 
-            case "class":
-                Class class1 = new Class();
-                class1.setScientificName((String) data.get("scientificName"));
-                class1.setAuthor((String) data.get("author"));
-                class1.setPublicationYear((int) data.get("publicationYear"));
-                class1.setAncestorID((long) data.get("ancestorID"));
-                classService.addClass(class1);
-                break;
+                case "class":
+                    Class class1 = new Class();
+                    class1.setScientificName((String) data.get("scientificName"));
+                    class1.setAuthor((String) data.get("author"));
+                    class1.setPublicationYear((int) data.get("publicationYear"));
+                    class1.setAncestorID((long) data.get("ancestorID"));
+                    class1.setId((long) data.get("id"));
+                    classService.updateClass(class1);
+                    break;
 
-            case "order":
-                Order order = new Order();
-                order.setScientificName((String) data.get("scientificName"));
-                order.setAuthor((String) data.get("author"));
-                order.setPublicationYear((int) data.get("publicationYear"));
-                order.setAncestorID((long) data.get("ancestorID"));
-                orderService.addOrder(order);
-                break;
+                case "order":
+                    Order order = new Order();
+                    order.setScientificName((String) data.get("scientificName"));
+                    order.setAuthor((String) data.get("author"));
+                    order.setPublicationYear((int) data.get("publicationYear"));
+                    order.setAncestorID((long) data.get("ancestorID"));
+                    order.setId((long) data.get("id"));
+                    orderService.updateOrder(order);
+                    break;
 
-            case "famiy":
-                Family family = new Family();
-                family.setScientificName((String) data.get("scientificName"));
-                family.setAuthor((String) data.get("author"));
-                family.setPublicationYear((int) data.get("publicationYear"));
-                family.setAncestorID((long) data.get("ancestorID"));
-                familyService.addFamily(family);
-                break;
+                case "famiy":
+                    Family family = new Family();
+                    family.setScientificName((String) data.get("scientificName"));
+                    family.setAuthor((String) data.get("author"));
+                    family.setPublicationYear((int) data.get("publicationYear"));
+                    family.setAncestorID((long) data.get("ancestorID"));
+                    family.setId((long) data.get("id"));
+                    familyService.updateFamily(family);
+                    break;
 
-            case "species":
-                Species species = new Species();
-                species.setScientificName((String) data.get("scientificName"));
-                species.setAuthor((String) data.get("author"));
-                species.setPublicationYear((int) data.get("publicationYear"));
-                species.setAncestorID((long) data.get("ancestorID"));
-                speciesService.addSpecies(species);
-                break;
+                case "species":
+                    Species species = new Species();
+                    species.setScientificName((String) data.get("scientificName"));
+                    species.setAuthor((String) data.get("author"));
+                    species.setPublicationYear((int) data.get("publicationYear"));
+                    species.setAncestorID((long) data.get("ancestorID"));
+                    species.setId((long) data.get("id"));
+                    speciesService.updateSpecies(species);
+                    break;
 
-            default:
-                Kingdom kingdom1 = new Kingdom();
-                kingdom1.setScientificName((String) data.get("scientificName"));
-                kingdom1.setAuthor((String) data.get("author"));
-                kingdom1.setPublicationYear((int) data.get("publicationYear"));
-                kingdomService.addKingdom(kingdom1);
-                break;
-        }
-
-        response.put("YES", "created");
+                default :
+                    response.put("NO", "update");
+                    return ResponseEntity.ok(response).getBody();
+            }
+        response.put("YES", "update");
         return ResponseEntity.ok(response).getBody();
 
+        }else{
+            switch (type) {
+                case "kingdom":
+                    Kingdom kingdom = new Kingdom();
+                    kingdom.setScientificName((String) data.get("scientificName"));
+                    kingdom.setAuthor((String) data.get("author"));
+                    kingdom.setPublicationYear((int) data.get("publicationYear"));
+                    kingdomService.addKingdom(kingdom);
+                    break;
+
+                case "genus":
+                    Genus genus = new Genus((String) data.get("scientificName"),(String) data.get("author"), (int) data.get("publicationYear"), (long) data.get("ancestorID"));
+                    genusService.addGenus(genus);
+                    break;
+
+                case "phylum":
+                    Phylum phylum = new Phylum();
+                    System.out.println("llegaaaaaaa");
+                    phylum.setScientificName((String) data.get("scientificName"));
+                    phylum.setAuthor((String) data.get("author"));
+                    phylum.setPublicationYear((int) data.get("publicationYear"));
+                    phylum.setAncestorID(55);
+                    System.out.println("phylum");
+                    phylumService.addPhylum(phylum);
+                    break;
+
+                case "class":
+                    Class class1 = new Class();
+                    class1.setScientificName((String) data.get("scientificName"));
+                    class1.setAuthor((String) data.get("author"));
+                    class1.setPublicationYear((int) data.get("publicationYear"));
+                    class1.setAncestorID((long) data.get("ancestorID"));
+                    classService.addClass(class1);
+                    break;
+
+                case "order":
+                    Order order = new Order();
+                    order.setScientificName((String) data.get("scientificName"));
+                    order.setAuthor((String) data.get("author"));
+                    order.setPublicationYear((int) data.get("publicationYear"));
+                    order.setAncestorID((long) data.get("ancestorID"));
+                    orderService.addOrder(order);
+                    break;
+
+                case "famiy":
+                    Family family = new Family();
+                    family.setScientificName((String) data.get("scientificName"));
+                    family.setAuthor((String) data.get("author"));
+                    family.setPublicationYear((int) data.get("publicationYear"));
+                    family.setAncestorID((long) data.get("ancestorID"));
+                    familyService.addFamily(family);
+                    break;
+
+                case "species":
+                    Species species = new Species();
+                    species.setScientificName((String) data.get("scientificName"));
+                    species.setAuthor((String) data.get("author"));
+                    species.setPublicationYear((int) data.get("publicationYear"));
+                    species.setAncestorID((long) data.get("ancestorID"));
+                    speciesService.addSpecies(species);
+                    break;
+
+                default:
+                    response.put("NO", "created");
+                    return ResponseEntity.ok(response).getBody();
+            }
+        }
+        response.put("YES", "created");
+        return ResponseEntity.ok(response).getBody();
     }
 
     @RequestMapping("/list/kingdoms")
@@ -209,17 +281,6 @@ public class TaxonController {
             }
         }
         return taxon;
-    }
-
-    @PutMapping("/update/{id}")
-    public void updateTaxon(@PathVariable("id") long id, @RequestBody Taxon taxon) {
-        Taxon taxon1 = getTaxon(id);
-        if (taxon1 != null) {
-            taxon1.setScientificName(taxon.getScientificName());
-            taxon1.setAuthor(taxon.getAuthor());
-            taxon1.setPublicationYear(taxon.getPublicationYear());
-            taxon1.setAncestorID(taxon.getAncestorID());
-        }
     }
 
     @DeleteMapping("/delete/{id}")

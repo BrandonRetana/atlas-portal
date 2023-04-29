@@ -11,9 +11,9 @@ import java.util.List;
 @Service
 public class PhylumService{
 
+    @Autowired
     PhylumRepository phylumRepository;
 
-    @Autowired
     public PhylumService(PhylumRepository phylumRepository) {
         this.phylumRepository = phylumRepository;
     }
