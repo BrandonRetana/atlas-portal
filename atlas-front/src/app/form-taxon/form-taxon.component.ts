@@ -22,7 +22,6 @@ export class FormTaxonComponent implements OnInit {
     typeClass: ['', [Validators.required]],
     scientificName: ['', [Validators.required]],
     author: ['', [Validators.required]],
-    authorName: [''],
     publicationYear: ['', [Validators.required]],
     ancestor: ['', [Validators.required]],
     ancestorName: [''],
@@ -30,7 +29,6 @@ export class FormTaxonComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAuthor();
-    this.getAncestor('phylum');
   }
 
   public getAuthor() {
@@ -45,9 +43,8 @@ export class FormTaxonComponent implements OnInit {
     );
   }
 
-  public setSelectorAuthor(selector: string, authorname: string) {
-    this.TaxonForm.controls['author'].setValue(<string>selector);
-    this.TaxonForm.controls['authorName'].setValue(<string>authorname);
+  public setAuthor(selector: string) {
+    this.TaxonForm.controls['author'].setValue(selector);
   }
 
   public setAncestor(ancestorId: string, scientificName: string) {

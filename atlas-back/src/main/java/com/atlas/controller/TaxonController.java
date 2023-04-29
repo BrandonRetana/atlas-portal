@@ -47,7 +47,7 @@ public class TaxonController {
     @Autowired
     private SpeciesService speciesService;
 
-
+    @PostMapping("/create/taxon")
     public @ResponseBody Map<String, String> getTaxon(@RequestBody Map<String, Object> data,   RedirectAttributes redirectAttributes){
 
         Map<String, String> response = new HashMap<>();

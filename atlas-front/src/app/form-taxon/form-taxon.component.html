@@ -30,20 +30,9 @@
     <input type="text" formControlName="scientificName" />
 
 <!--Selector del Autor-->
-    <label for="autor">Autor:</label>
-    <div class="d-flex justify-content-around">
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          {{ TaxonForm.controls["authorName"].value }}
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li *ngFor="let author of Authors">
-            <a class="dropdown-item" (click)="setSelectorAuthor(author.id, author.name)">{{ author.name }}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <label for="author">Autor</label>
+    <input type="text" formControlName="author" />
+    
 
 <!--Input del anno del publicacion -->
     <label for="anno-publicacion">Año de publicación:</label>
