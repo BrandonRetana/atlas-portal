@@ -11,13 +11,8 @@ import java.util.Optional;
 
 @Service
 public class GenusService {
-
-    GenusRepository genusRepository;
-
     @Autowired
-    public GenusService(GenusRepository genusRepository) {
-        this.genusRepository = genusRepository;
-    }
+    GenusRepository genusRepository;
 
     public Genus getGenusById(long id) {
        Optional<Genus> genus = genusRepository.findById(id);

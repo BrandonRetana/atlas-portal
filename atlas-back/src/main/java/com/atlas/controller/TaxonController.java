@@ -52,23 +52,27 @@ public class TaxonController {
     public @ResponseBody Map<String, String> getTaxon(@RequestBody Map<String, Object> data,   RedirectAttributes redirectAttributes){
 
         Map<String, String> response = new HashMap<>();
-
+        //TODO: Algunas de los servicios no funcionan por que tienen el autowired en en metodo y es en el atributo respositorio
         try {
             String type = (String) data.get("typeClass");
-            System.out.println("llega");
+            System.out.println("llegados");
 
             switch (type) {
                 case "kingdom":
                     Kingdom kingdom = new Kingdom();
                     kingdom.setScientificName((String) data.get("scientificName"));
-                    kingdom.setAuthor((String) data.get("author"));
+                    kingdom.setAuthor((String) data.get("author")); //TODO Hacer que author no sea un string si no, un atibuto de tipo person, hacer eso para que uno
                     kingdom.setPublicationYear((int) data.get("publicationYear"));
                     kingdom.setAncestorID(0);
                     kingdomService.addKingdom(kingdom);
                     break;
 
                 case "genus":
-                    Genus genus = new Genus((String) data.get("scientificName"),(String) data.get("author"), (int) data.get("publicationYear"), (long) data.get("ancestorID"));
+                    Genus genus = new Genus();
+                    genus.setScientificName((String) data.get("scientificName"));
+                    genus.setAuthor((String) data.get("author"));
+                    genus.setPublicationYear((int) data.get("publicationYear"));
+                    genus.setAncestorID((long) data.get("ancestorID"));
                     genusService.addGenus(genus);
                     break;    
 

@@ -11,10 +11,9 @@ import java.util.Optional;
 
 @Service
 public class FamilyService {
-
+    @Autowired
     private FamilyRepository familyRepository;
 
-    @Autowired
     public FamilyService(FamilyRepository familyRepository) {
         this.familyRepository = familyRepository;
     }
