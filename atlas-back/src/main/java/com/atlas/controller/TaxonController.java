@@ -61,7 +61,7 @@ public class TaxonController {
                 case "kingdom":
                     Kingdom kingdom = new Kingdom();
                     kingdom.setScientificName((String) data.get("scientificName"));
-                    kingdom.setAuthor((String) data.get("author")); //TODO Hacer que author no sea un string si no, un atibuto de tipo person, hacer eso para que uno
+                    kingdom.setAuthor((String) data.get("author")); //TODO Hacer que author no sea un string si no, un atibuto de tipo person, hacer eso para que uno de los casos
                     kingdom.setPublicationYear((int) data.get("publicationYear"));
                     kingdom.setAncestorID(0);
                     kingdomService.addKingdom(kingdom);
