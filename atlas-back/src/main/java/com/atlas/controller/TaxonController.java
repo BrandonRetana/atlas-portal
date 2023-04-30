@@ -48,7 +48,7 @@ public class TaxonController {
     private SpeciesService speciesService;
 
     @PostMapping("/create/taxon")
-    public @ResponseBody Map<String, String> getTaxon(@RequestBody Map<String, Object> data,   RedirectAttributes redirectAttributes){
+    public @ResponseBody Map<String, String> createTaxon(@RequestBody Map<String, Object> data,   RedirectAttributes redirectAttributes){
 
         Map<String, String> response = new HashMap<>();
         String type = (String) data.get("typeClass");
@@ -77,7 +77,7 @@ public class TaxonController {
                     phylum.setScientificName((String) data.get("scientificName"));
                     phylum.setAuthor((String) data.get("author"));
                     phylum.setPublicationYear((int) data.get("publicationYear"));
-                    phylum.setAncestorID(55);
+                    phylum.setAncestorID((long) data.get("ancestorID"));
                     phylum.setId((long) data.get("id"));
                     System.out.println("phylum");
                     phylumService.updatePhylum(phylum);
@@ -151,7 +151,7 @@ public class TaxonController {
                     phylum.setScientificName((String) data.get("scientificName"));
                     phylum.setAuthor((String) data.get("author"));
                     phylum.setPublicationYear((int) data.get("publicationYear"));
-                    phylum.setAncestorID((int) data.get("ancestor"));
+                    phylum.setAncestorID((int) data.get("ancestorID"));
                     System.out.println("phylum");
                     phylumService.addPhylum(phylum);
                     break;
@@ -161,7 +161,7 @@ public class TaxonController {
                     class1.setScientificName((String) data.get("scientificName"));
                     class1.setAuthor((String) data.get("author"));
                     class1.setPublicationYear((int) data.get("publicationYear"));
-                    class1.setAncestorID((long) data.get("ancestorID"));
+                    class1.setAncestorID((int) data.get("ancestorID"));
                     classService.addClass(class1);
                     break;
 
@@ -258,7 +258,7 @@ public class TaxonController {
     }
 
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/taxon/{id}")
     public Taxon getTaxon(@PathVariable("id") long id) {
         Taxon taxon = null;
         taxon = kingdomService.getKingdomById(id);

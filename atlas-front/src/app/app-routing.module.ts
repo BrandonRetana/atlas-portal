@@ -30,6 +30,10 @@ const routes: Routes = [
     component:FormTaxonComponent
   },
   {
+    path:"create/taxon/:id",
+    component:FormTaxonComponent
+  },
+  {
     path:"list/kingdoms",
     component:TableKingdomComponent
   }

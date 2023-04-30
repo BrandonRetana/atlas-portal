@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TaxonServiceService } from '../service/taxon-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form-taxon',
@@ -17,6 +18,8 @@ export class FormTaxonComponent implements OnInit {
 
   public ancestors: Array<any> = [];
 
+  private route: ActivatedRoute | undefined;
+
   public TaxonForm = this.formBuilder.group({
     id: [''],
     typeClass: ['', [Validators.required]],
@@ -29,7 +32,17 @@ export class FormTaxonComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAuthor();
+    if(this.route){
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.service.getTaxonById(id).subscribe((data) => {
+          this.TaxonForm.patchValue(data);
+        });
+      }
+    })
   }
+}
 
   public getAuthor() {
     this.service.getAuthors().subscribe(
@@ -64,7 +77,7 @@ export class FormTaxonComponent implements OnInit {
       scientificName: this.TaxonForm.controls['scientificName'].value,
       author: this.TaxonForm.controls['author'].value,
       publicationYear: this.TaxonForm.controls['publicationYear'].value,
-      ancestor: this.TaxonForm.controls['ancestor'].value,
+      ancestorID: this.TaxonForm.controls['ancestor'].value,
     };
 
     this.service.submit(taxonJson).subscribe(() => {

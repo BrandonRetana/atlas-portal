@@ -47,4 +47,8 @@ export class TaxonServiceService {
   public getSpecies(){
     return this.http.get<any>(this.url+"list/species")
   }
+
+  public getTaxonById(id:string){
+    return this.http.get<any>(`${this.url}taxon/${id}`)
+  }
 }
