@@ -47,7 +47,7 @@ public class TaxonController {
         Map<String, String> response = new HashMap<>();
         String type = (String) data.get("typeClass");
 
-        if (data.get("id") != null){ //update
+        if (data.get("id") != ""){ //update
             long id2;
             switch (type) {
                 case "kingdom":
@@ -105,7 +105,7 @@ public class TaxonController {
                     orderService.updateOrder(order);
                     break;
 
-                case "famiy":
+                case "family":
                     Family family = new Family();
                     family.setScientificName((String) data.get("scientificName"));
                     family.setAuthor((String) data.get("author"));
@@ -149,7 +149,7 @@ public class TaxonController {
                     genus.setScientificName((String) data.get("scientificName"));
                     genus.setAuthor((String) data.get("author"));
                     genus.setPublicationYear((int) data.get("publicationYear"));
-                    genus.setAncestorID((long) data.get("ancestorID"));
+                    genus.setAncestorID((int) data.get("ancestorID"));
                     genusService.addGenus(genus);
                     break;
 
@@ -158,7 +158,7 @@ public class TaxonController {
                     phylum.setScientificName((String) data.get("scientificName"));
                     phylum.setAuthor((String) data.get("author"));
                     phylum.setPublicationYear((int) data.get("publicationYear"));
-                    phylum.setAncestorID((long) data.get("ancestorID"));
+                    phylum.setAncestorID((int) data.get("ancestorID"));
                     System.out.println("phylum");
                     phylumService.addPhylum(phylum);
                     break;
@@ -168,7 +168,7 @@ public class TaxonController {
                     class1.setScientificName((String) data.get("scientificName"));
                     class1.setAuthor((String) data.get("author"));
                     class1.setPublicationYear((int) data.get("publicationYear"));
-                    class1.setAncestorID((long) data.get("ancestorID"));
+                    class1.setAncestorID((int) data.get("ancestorID"));
                     classService.addClass(class1);
                     break;
 
@@ -177,16 +177,16 @@ public class TaxonController {
                     order.setScientificName((String) data.get("scientificName"));
                     order.setAuthor((String) data.get("author"));
                     order.setPublicationYear((int) data.get("publicationYear"));
-                    order.setAncestorID((long) data.get("ancestorID"));
+                    order.setAncestorID((int) data.get("ancestorID"));
                     orderService.addOrder(order);
                     break;
 
-                case "famiy":
+                case "family":
                     Family family = new Family();
                     family.setScientificName((String) data.get("scientificName"));
                     family.setAuthor((String) data.get("author"));
                     family.setPublicationYear((int) data.get("publicationYear"));
-                    family.setAncestorID((long) data.get("ancestorID"));
+                    family.setAncestorID((int) data.get("ancestorID"));
                     familyService.addFamily(family);
                     break;
 
@@ -195,7 +195,7 @@ public class TaxonController {
                     species.setScientificName((String) data.get("scientificName"));
                     species.setAuthor((String) data.get("author"));
                     species.setPublicationYear((int) data.get("publicationYear"));
-                    species.setAncestorID((long) data.get("ancestorID"));
+                    species.setAncestorID((int) data.get("ancestorID"));
                     speciesService.addSpecies(species);
                     break;
 
@@ -220,7 +220,7 @@ public class TaxonController {
     public @ResponseBody Map<String, Object> getAllPhylums() {
         Map<String, Object> response = new HashMap<>();
         List<Phylum> phylums = phylumService.getAllPhylums();
-        response.put("taxons", phylums);
+        response.put("phylums", phylums);
         return response;
     }
 
@@ -228,7 +228,7 @@ public class TaxonController {
     public @ResponseBody Map<String, Object> getAllClasses() {
         Map<String, Object> response = new HashMap<>();
         List<Class> classes = classService.getAllClasses();
-        response.put("taxons", classes);
+        response.put("classes", classes);
         return response;
     }
 
@@ -236,7 +236,7 @@ public class TaxonController {
     public @ResponseBody Map<String, Object> getAllOrders() {
         Map<String, Object> response = new HashMap<>();
         List<Order> orders = orderService.getAllOrders();
-        response.put("taxons", orders);
+        response.put("orders", orders);
         return response;
     }
 
@@ -244,7 +244,7 @@ public class TaxonController {
     public @ResponseBody Map<String, Object> getAllFamilies() {
         Map<String, Object> response = new HashMap<>();
         List<Family> families = familyService.getAllFamilies();
-        response.put("taxons", families);
+        response.put("families", families);
         return response;
     }
 
@@ -252,7 +252,7 @@ public class TaxonController {
     public @ResponseBody Map<String, Object> getAllGenus() {
         Map<String, Object> response = new HashMap<>();
         List<Genus> genus = genusService.getAllGenus();
-        response.put("taxons", genus);
+        response.put("genus", genus);
         return response;
     }
 
@@ -260,34 +260,31 @@ public class TaxonController {
     public @ResponseBody Map<String, Object> getAllSpecies() {
         Map<String, Object> response = new HashMap<>();
         List<Species> species = speciesService.getAllSpecies();
-        response.put("taxons", species);
+        response.put("species", species);
         return response;
     }
 
-    
+
     @RequestMapping("/taxon/{id}")
     public @ResponseBody Map<String, String> getTaxon(@PathVariable("id") long id) {
         Map<String, String> response = new HashMap<>();
         Taxon taxon = null;
-        taxon = kingdomService.getKingdomById(id);
-        if (taxon == null) {
+        if(kingdomService.isPresent(id)){
+            taxon = kingdomService.getKingdomById(id);
+        }else if(phylumService.isPresent(id)){
             taxon = phylumService.getPhylumById(id);
-            if (taxon == null) {
-                taxon = classService.getClassById(id);
-                if (taxon == null) {
-                    taxon = orderService.getOrderById(id);
-                    if (taxon == null) {
-                        taxon = familyService.getFamilyById(id);
-                        if (taxon == null) {
-                            taxon = genusService.getGenusById(id);
-                            if (taxon == null) {
-                                taxon = speciesService.getSpeciesById(id);
-                            }
-                        }
-                    }
-                }
-            }
+        }else if(classService.isPresent(id)){
+            taxon = classService.getClassById(id);
+        }else if(orderService.isPresent(id)){
+            taxon = orderService.getOrderById(id);
+        }else if(familyService.isPresent(id)){
+            taxon = familyService.getFamilyById(id);
+        }else if(genusService.isPresent(id)){
+            taxon = genusService.getGenusById(id);
+        }else if(speciesService.isPresent(id)){
+            taxon = speciesService.getSpeciesById(id);
         }
+
         if (taxon != null) {
             response.put("id", String.valueOf(taxon.getAncestorID()));
             response.put("scientificName", taxon.getScientificName());
@@ -295,12 +292,14 @@ public class TaxonController {
             response.put("publicationYear", String.valueOf(taxon.getPublicationYear()));
             response.put("ancestorID", String.valueOf(taxon.getAncestorID()));
             response.put("typeClass", taxon.getClass().getSimpleName().toLowerCase());
-            if(taxon.getAncestorID() != 0){
-                Taxon t = getTaxonbyId(taxon.getAncestorID());
+            Taxon t = getTaxonbyId(taxon.getAncestorID());
+            if(t != null){
                 String name = t.getScientificName();
                 response.put("ancestorName", name);
             }
-            response.put("ancestorName", "Sin ancestro");
+            else{
+                response.put("ancestorName", "Sin ancestro");
+            }
         }
         return response;
     }
@@ -329,24 +328,20 @@ public class TaxonController {
 
     public Taxon getTaxonbyId(@PathVariable("id") long id) {
         Taxon taxon = null;
-        taxon = kingdomService.getKingdomById(id);
-        if (taxon == null) {
+        if(kingdomService.isPresent(id)){
+            taxon = kingdomService.getKingdomById(id);
+        }else if(phylumService.isPresent(id)){
             taxon = phylumService.getPhylumById(id);
-            if (taxon == null) {
-                taxon = classService.getClassById(id);
-                if (taxon == null) {
-                    taxon = orderService.getOrderById(id);
-                    if (taxon == null) {
-                        taxon = familyService.getFamilyById(id);
-                        if (taxon == null) {
-                            taxon = genusService.getGenusById(id);
-                            if (taxon == null) {
-                                taxon = speciesService.getSpeciesById(id);
-                            }
-                        }
-                    }
-                }
-            }
+        }else if(classService.isPresent(id)){
+            taxon = classService.getClassById(id);
+        }else if(orderService.isPresent(id)){
+            taxon = orderService.getOrderById(id);
+        }else if(familyService.isPresent(id)){
+            taxon = familyService.getFamilyById(id);
+        }else if(genusService.isPresent(id)){
+            taxon = genusService.getGenusById(id);
+        }else if(speciesService.isPresent(id)){
+            taxon = speciesService.getSpeciesById(id);
         }
         return taxon;
     }

@@ -6,7 +6,8 @@ import { FormImageComponent } from './form-image/form-image.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { SingleImageInfoComponent } from './single-image-info/single-image-info.component';
 import { FormTaxonComponent } from './form-taxon/form-taxon.component';
-import { TableKingdomComponent } from './taxon-tables/table-kingdom/table-kingdom.component';
+import { TableKingdomComponent } from './table-kingdom/table-kingdom.component';
+import { TableTaxonComponent } from './table-taxon/table-taxon.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,14 @@ const routes: Routes = [
   {
     path:"list/kingdoms",
     component:TableKingdomComponent
+  },
+  {
+    path:"list/taxons",
+    component:TableTaxonComponent
+  },
+  {
+    path: "list/taxons/:id",
+    component:TableTaxonComponent
   }
 
  

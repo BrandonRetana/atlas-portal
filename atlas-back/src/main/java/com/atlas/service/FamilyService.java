@@ -48,6 +48,10 @@ public class FamilyService {
     public void deleteFamily(long id) {
         familyRepository.deleteById(id);
     }
+
+    public boolean isPresent(long id) {
+        return familyRepository.existsById(id);
+    }
     
 
 

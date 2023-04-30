@@ -45,6 +45,10 @@ public class SpeciesService {
         speciesRepository.deleteById(id);
     }
 
+    public boolean isPresent(long id) {
+        return speciesRepository.existsById(id);
+    }
+
 }
 
 

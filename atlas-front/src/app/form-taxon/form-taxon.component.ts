@@ -33,7 +33,6 @@ export class FormTaxonComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.route){
-      console.log("no entro")
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
@@ -45,9 +44,8 @@ export class FormTaxonComponent implements OnInit {
           this.TaxonForm.controls['scientificName'].setValue(data['scientificName']);
           this.TaxonForm.controls['author'].setValue(data['author']);
           this.TaxonForm.controls['publicationYear'].setValue(data['publicationYear']);
-          this.TaxonForm.controls['ancestor'].setValue(data['ancestor']);
+          this.TaxonForm.controls['ancestor'].setValue(data['ancestorID']);
           this.TaxonForm.controls['ancestorName'].setValue(data['ancestorName']);
-          this.TaxonForm.controls['author'].disable();
           this.isUpdate = true;
           console.log(data);
         });
@@ -156,6 +154,7 @@ public getAncestor(typeClass: String) {
       break;
 
     case 'genus':
+      console.log('genus');
       this.service.getFamilies().subscribe(
         (data) => {
           this.ancestors = data['families'];
@@ -168,9 +167,10 @@ public getAncestor(typeClass: String) {
       break;
 
     case 'species':
+      console.log('species');
       this.service.getGenus().subscribe(
         (data) => {
-          this.ancestors = data['genuses'];
+          this.ancestors = data['genus'];
           console.log(data);
         },
         (error) => {

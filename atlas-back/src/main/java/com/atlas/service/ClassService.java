@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.models.taxonModels.Taxon;
 import com.atlas.repository.ClassRepository;
 import com.atlas.models.taxonModels.Class;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,10 @@ public class ClassService {
     @Transactional
     public void deleteClass(long id) {
         classRepository.deleteById(id);
+    }
+
+    public boolean isPresent(long id){
+        return classRepository.existsById(id);
     }
 
 }

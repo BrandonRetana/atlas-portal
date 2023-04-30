@@ -44,5 +44,9 @@ public class KingdomService {
     public void deleteKingdom(long id) {
         kingdomRepository.deleteById(id);
     }
+
+    public boolean isPresent(long id) {
+        return kingdomRepository.existsById(id);
+    }
  
 }

@@ -46,4 +46,8 @@ public class PhylumService{
         phylumRepository.deleteById(id);
     }
 
+    public boolean isPresent(long id) {
+        return phylumRepository.existsById(id);
+    }
+
 }

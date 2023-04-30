@@ -44,5 +44,9 @@ public class OrderService {
     public void deleteOrder(long id) {
         orderRepository.deleteById(id);
     }
+
+    public boolean isPresent(long id) {
+        return orderRepository.existsById(id);
+    }
     
 }

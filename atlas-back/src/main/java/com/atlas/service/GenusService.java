@@ -45,6 +45,10 @@ public class GenusService {
         genusRepository.deleteById(id);
     }
 
+    public boolean isPresent(long id) {
+        return genusRepository.existsById(id);
+    }
+
 }
 
    
