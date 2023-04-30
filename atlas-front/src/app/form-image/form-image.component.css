@@ -117,6 +117,7 @@ input[type="submit"]:hover {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
+  gap: 10px;
 }
 
 .selector {

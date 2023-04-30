@@ -25,7 +25,7 @@
     <!--fecha-->
     <div class="form-group">
       <label for="fecha-creacion">Fecha de creación:</label>
-      <input type="date" id="fecha-creacion" name="fecha-creacion" class="input-style">
+      <input type="date" formControlName="date" class="input-style">
     </div>
 
     <!--Palabras clave-->
@@ -54,12 +54,8 @@
           data-bs-toggle="dropdown" aria-expanded="false">
           {{ ImageForm.controls["authorName"].value }}
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
-          </li>
-          <li><a class="dropdown-item">Another action</a></li>
-          <li><a class="dropdown-item">Something else here</a></li>
+        <ul class="dropdown-menu" >
+          <li><a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a></li>
         </ul>
       </div>
     </div>
@@ -70,14 +66,12 @@
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
           data-bs-toggle="dropdown" aria-expanded="false">
-          {{ ImageForm.controls["authorName"].value }}
+          {{ ImageForm.controls["ownerName"].value }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
             <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
           </li>
-          <li><a class="dropdown-item">Another action</a></li>
-          <li><a class="dropdown-item">Something else here</a></li>
         </ul>
       </div>
     </div>
@@ -88,7 +82,7 @@
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
           data-bs-toggle="dropdown" aria-expanded="false">
-          {{ ImageForm.controls["authorName"].value }}
+          {{ ImageForm.controls["license"].value }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
@@ -107,137 +101,153 @@
 
     <div class="selectors">
       <!--kingdom-->
+    <div>
     <label for="Ancestro">Reino:</label>
       <div class="d-flex ">
         <div class="selector">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
             data-bs-toggle="dropdown" aria-expanded="false">
-            {{ ImageForm.controls["authorName"].value }}
+            {{ ImageForm.controls["kingdomName"].value }}
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li>
-              <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+
+            <li *ngFor="let kingdom of kingdoms">
+              <a class="dropdown-item" (click)="setKingdom(kingdom.id, kingdom.scientificName, kingdom.ancestorID)" >{{kingdom.scientificName}}</a>
             </li>
-            <li><a class="dropdown-item">Another action</a></li>
-            <li><a class="dropdown-item">Something else here</a></li>
+
           </ul>
         </div>
       </div>
+    </div>
 
       <!--selector author-->
+      <div>
     <label for="Ancestro">Filo:</label>
     <div class="d-flex ">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
           data-bs-toggle="dropdown" aria-expanded="false">
-          {{ ImageForm.controls["authorName"].value }}
+          {{ ImageForm.controls["phylumName"].value }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+
+          <li *ngFor="let phylum of phylums">
+            <a class="dropdown-item" (click)="setPhylum(phylum.id, phylum.scientificName, phylum.ancestorID)">{{phylum.scientificName}}</a>
           </li>
-          <li><a class="dropdown-item">Another action</a></li>
-          <li><a class="dropdown-item">Something else here</a></li>
+
         </ul>
       </div>
     </div>
+  </div>
 
     <!--selector Clase-->
+    <div>
     <label for="Ancestro">Clase:</label>
     <div class="d-flex ">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
           data-bs-toggle="dropdown" aria-expanded="false">
-          {{ ImageForm.controls["authorName"].value }}
+          {{ ImageForm.controls["className"].value }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+
+          <li *ngFor="let class of classes">
+            <a class="dropdown-item" (click)="setClass(class.id, class.scientificName, class.ancestorID)">{{class.scientificName}}</a>
           </li>
-          <li><a class="dropdown-item">Another action</a></li>
-          <li><a class="dropdown-item">Something else here</a></li>
+      
+          
         </ul>
       </div>
     </div>
+  </div>
 
 
     <!--selector Order-->
+    <div>
     <label for="Ancestro">Orden:</label>
     <div class="d-flex ">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
           data-bs-toggle="dropdown" aria-expanded="false">
-          {{ ImageForm.controls["authorName"].value }}
+          {{ ImageForm.controls["orderName"].value }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+
+          <li *ngFor="let order of orders">
+            <a class="dropdown-item" (click)="setOrder(order.id, order.scientificName, order.ancestorID)"  >{{order.scientificName}}</a>
           </li>
-          <li><a class="dropdown-item">Another action</a></li>
-          <li><a class="dropdown-item">Something else here</a></li>
+          
         </ul>
       </div>
     </div>
+  </div>
 
     <!--selector author-->
+    <div>
     <label for="Ancestro">Familia:</label>
     <div class="d-flex ">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
           data-bs-toggle="dropdown" aria-expanded="false">
-          {{ ImageForm.controls["authorName"].value }}
+          {{ ImageForm.controls["familyName"].value }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+
+          <li *ngFor="let family of families">
+            <a class="dropdown-item" (click)="setFamily(family.id, family.scientificName, family.ancestorID)" >{{family.scientificName}}</a>
           </li>
-          <li><a class="dropdown-item">Another action</a></li>
-          <li><a class="dropdown-item">Something else here</a></li>
+
+          
         </ul>
       </div>
     </div>
+  </div>
 
     <!--selector author-->
+    <div>
     <label for="Ancestro">Genero:</label>
     <div class="d-flex ">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
           data-bs-toggle="dropdown" aria-expanded="false">
-          {{ ImageForm.controls["authorName"].value }}
+          {{ ImageForm.controls["genusName"].value }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+
+          <li *ngFor="let genus of genus">
+            <a class="dropdown-item" (click)="setGenus(genus.id, genus.scientificName, genus.ancestorID)">{{genus.scientificName}}</a>
           </li>
-          <li><a class="dropdown-item">Another action</a></li>
-          <li><a class="dropdown-item">Something else here</a></li>
+
         </ul>
       </div>
     </div>
+  </div>
 
     <!--selector author-->
+    <div>
     <label for="Ancestro">Especie:</label>
     <div class="d-flex ">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
           data-bs-toggle="dropdown" aria-expanded="false">
-          {{ ImageForm.controls["authorName"].value }}
+          {{ ImageForm.controls["speciesName"].value }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <a class="dropdown-item" (click)="setAuthor('2', 'Maria')">Maria</a>
+
+          <li *ngFor="let specie of species">
+            <a class="dropdown-item" (click)="setSpecies(specie.id, specie.scientificName, specie.ancestorID)" >{{specie.scientificName}}</a>
           </li>
-          <li><a class="dropdown-item">Another action</a></li>
-          <li><a class="dropdown-item">Something else here</a></li>
         </ul>
       </div>
+    </div>    
     </div>
 
     </div>
+
 
     
 
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" [disabled]="ImageForm.invalid" >Submit</button>
   </form>
 </div>

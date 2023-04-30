@@ -10,15 +10,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FormTaxonComponent implements OnInit {
   public isUpdate: boolean = false;
+
+  public haveFathers: boolean = false;
+
+  public Authors: Array<any> = [];
+
+  public ancestors: Array<any> = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private service: TaxonServiceService,
     private route: ActivatedRoute
   ) { }
-
-  public Authors: Array<any> = [];
-
-  public ancestors: Array<any> = [];
 
 
   public TaxonForm = this.formBuilder.group({
@@ -81,6 +84,7 @@ export class FormTaxonComponent implements OnInit {
   }
 
   public submit() {
+   // if(this.isUpdate && this.TaxonForm.valid && this.haveFather()){
     const taxonJson = {
       id: this.TaxonForm.controls['id'].value,
       typeClass: this.TaxonForm.controls['typeClass'].value,
@@ -92,7 +96,17 @@ export class FormTaxonComponent implements OnInit {
 
     this.service.submit(taxonJson).subscribe(() => {
       console.log('success');
-    });
+    });//}
+  }
+
+  public haveFather() {
+    if (this.TaxonForm.controls['ancestorName'].value == '' || this.TaxonForm.controls['ancestorName'].value == null || this.TaxonForm.controls['ancestorName'].value == undefined || this.TaxonForm.controls['ancestorName'].value == 'Sin ancestro') {
+      this.haveFathers = false;
+      return false;
+    } else {
+      this.haveFathers = true;
+      return true;
+    }
   }
 
 

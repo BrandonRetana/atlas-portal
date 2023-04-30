@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ImageService } from '../service/image.service';
+import { TaxonServiceService } from '../service/taxon-service.service';
 
 
 @Component({
@@ -9,20 +10,52 @@ import { ImageService } from '../service/image.service';
   templateUrl: './form-image.component.html',
   styleUrls: ['./form-image.component.css']
 })
-export class FormImageComponent {
+export class FormImageComponent implements OnInit{
   selectedFile: any;
-  calendar: any;
+  kingdoms: Array<any> = [];
+  phylums: Array<any> = [];
+  classes: Array<any> = [];
+  orders: Array<any> = [];
+  families: Array<any> = [];
+  genus: Array<any> = [];
+  species: Array<any> = [];
   
-  constructor(private service: ImageService, private formBuilder: FormBuilder) { 
+  
+  constructor(private service: ImageService, private formBuilder: FormBuilder, private taxonService:TaxonServiceService) { 
   }
+
+
+  ngOnInit(): void {
+    this.loadTaxonData();
+  }
+
 
   public ImageForm = this.formBuilder.group({
     selectedFile: [null, Validators.required],
     imageName: ['', Validators.required],
     imageDescription: ['', Validators.required],
-    myDate:['', Validators.required],
+    date:['', Validators.required],
+    keywords:['', Validators.required],
     author:['', Validators.required],
-    authorName:['', Validators.required]
+    authorName:['', Validators.required],
+    owner:['', Validators.required],
+    ownerName:['', Validators.required],
+    license:['', Validators.required],
+
+    kingdom:[''],
+    phylum:[''],
+    class:[''],
+    order:[''],
+    family:[''],
+    genus:[''],
+    species:[''],
+    kingdomName:[''],
+    phylumName:[''],
+    className:[''],
+    orderName:[''],
+    familyName:[''],
+    genusName:[''],
+    speciesName:[''],
   });
   
   
@@ -36,6 +69,7 @@ export class FormImageComponent {
   onSubmit(): void {
     const formData = new FormData();
     formData.append('image', this.selectedFile);
+    formData.append('imageName', this.ImageForm.controls['imageName'].value || '');
     this.service.submitImage(formData).subscribe(response => console.log(response));
   }
 
@@ -43,6 +77,142 @@ export class FormImageComponent {
     this.ImageForm.controls['author'].setValue(id);
     this.ImageForm.controls['authorName'].setValue(name);
   }
+
+  public setOwner(id:string, name:string){
+    this.ImageForm.controls['owner'].setValue(id);
+    this.ImageForm.controls['ownerName'].setValue(name);
+
+  }
+
+  public setLicense(id:string){
+    this.ImageForm.controls['license'].setValue(id);
+  }
+
+  public setKingdom(id:string, name:string, ancestorID:number){
+    this.ImageForm.controls['kingdom'].setValue(id);
+    this.ImageForm.controls['kingdomName'].setValue(name);
+    this.setAncestor(ancestorID);
+  }
+
+  public setPhylum(id:string, name:string, ancestorID:number){
+    this.ImageForm.controls['phylum'].setValue(id);
+    this.ImageForm.controls['phylumName'].setValue(name);
+    this.setAncestor(ancestorID);
+  }
+
+  public setClass(id:string, name:string, ancestorID:number){
+    this.ImageForm.controls['class'].setValue(id);
+    this.ImageForm.controls['className'].setValue(name);
+    this.setAncestor(ancestorID);
+  }
+
+  public setOrder(id:string, name:string, ancestorID:number){
+    this.ImageForm.controls['order'].setValue(id);
+    this.ImageForm.controls['orderName'].setValue(name);
+    this.setAncestor(ancestorID);
+  }
+
+  public setFamily(id:string, name:string, ancestorID:number){
+    this.ImageForm.controls['family'].setValue(id);
+    this.ImageForm.controls['familyName'].setValue(name);
+    this.setAncestor(ancestorID);
+  }
+
+  public setGenus(id:string, name:string, ancestorID:number){
+    this.ImageForm.controls['genus'].setValue(id);
+    this.ImageForm.controls['genusName'].setValue(name);
+    this.setAncestor(ancestorID);
+  }
+
+  public setSpecies(id:string, name:string, ancestorID:number){
+    this.ImageForm.controls['species'].setValue(id);
+    this.ImageForm.controls['speciesName'].setValue(name);
+    this.setAncestor(ancestorID);
+  }
+  
+
+  setAncestor(ancestorId: number): void {
+    let taxonomy = null;
+    // Buscar el ancestro en el array correspondiente
+    if ((taxonomy = this.kingdoms.find((t) => t.id === ancestorId))) {
+      console.log("caso 1")
+      this.ImageForm.controls['kingdom'].setValue(taxonomy.id);
+      this.ImageForm.controls['kingdomName'].setValue(taxonomy.scientificName);
+
+    } else if ((taxonomy = this.phylums.find((t) => t.id === ancestorId))) {
+      this.ImageForm.controls['phylum'].setValue(taxonomy.id);
+      this.ImageForm.controls['phylumName'].setValue(taxonomy.scientificName);
+
+    } else if ((taxonomy = this.classes.find((t) => t.id === ancestorId))) {
+      this.ImageForm.controls['class'].setValue(taxonomy.id);
+      this.ImageForm.controls['className'].setValue(taxonomy.scientificName);
+
+    } else if ((taxonomy = this.orders.find((t) => t.id === ancestorId))) {
+      this.ImageForm.controls['order'].setValue(taxonomy.id);
+      this.ImageForm.controls['orderName'].setValue(taxonomy.scientificName);
+
+    } else if ((taxonomy = this.families.find((t) => t.id === ancestorId))) {
+      this.ImageForm.controls['family'].setValue(taxonomy.id);
+      this.ImageForm.controls['familyName'].setValue(taxonomy.scientificName);
+      
+    } else if ((taxonomy = this.genus.find((t) => t.id === ancestorId))) {
+      this.ImageForm.controls['genus'].setValue(taxonomy.id);
+      this.ImageForm.controls['genusName'].setValue(taxonomy.scientificName);
+      
+    } else if ((taxonomy = this.species.find((t) => t.id === ancestorId))) {
+      this.ImageForm.controls['species'].setValue(taxonomy.id);
+      this.ImageForm.controls['speciesName'].setValue(taxonomy.scientificName);
+      
+    } else {
+      console.log("No se encontró ningún ancestro correspondiente");
+    }
+
+    if(taxonomy.ancestorID != undefined){
+      this.setAncestor(taxonomy.ancestorID);
+    }
+
+    
+}
+
+  
+  
+
+
+  public loadTaxonData(){
+    this.taxonService.getKingdoms().subscribe((data) => {
+      this.kingdoms = data['kingdoms'];
+    });
+    this.taxonService.getPhylums().subscribe((data) => {
+      this.phylums = data['phylums'];
+    }
+    );
+
+    this.taxonService.getClasses().subscribe((data) => {
+      this.classes = data['classes'];
+    }
+    );
+
+    this.taxonService.getOrders().subscribe((data) => {
+      this.orders = data['orders'];
+    }
+    );
+
+    this.taxonService.getFamilies().subscribe((data) => {
+      this.families = data['families'];
+    }
+    );
+
+    this.taxonService.getGenus().subscribe((data) => {
+      this.genus = data['genus'];
+    }
+    );
+
+    this.taxonService.getSpecies().subscribe((data) => {
+      this.species = data['species'];
+    }
+    );
+  }
+
 
  
 }

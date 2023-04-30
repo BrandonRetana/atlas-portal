@@ -64,8 +64,8 @@ export class TableTaxonComponent implements OnInit{
   }
 
   public deleteTaxon(id:string){  
-    window.location.reload(); 
     this.service.delete(id);
+    window.location.reload(); 
   }
 
   public update(id: string) {
