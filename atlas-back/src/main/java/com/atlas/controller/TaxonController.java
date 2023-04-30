@@ -262,31 +262,7 @@ public class TaxonController {
         return response;
     }
 
-    @RequestMapping("/taxon/{id}")
-    public Taxon getTaxonbyId(@PathVariable("id") long id) {
-        Taxon taxon = null;
-        taxon = kingdomService.getKingdomById(id);
-        if (taxon == null) {
-            taxon = phylumService.getPhylumById(id);
-            if (taxon == null) {
-                taxon = classService.getClassById(id);
-                if (taxon == null) {
-                    taxon = orderService.getOrderById(id);
-                    if (taxon == null) {
-                        taxon = familyService.getFamilyById(id);
-                        if (taxon == null) {
-                            taxon = genusService.getGenusById(id);
-                            if (taxon == null) {
-                                taxon = speciesService.getSpeciesById(id);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return taxon;
-    }
-
+    
     @RequestMapping("/taxon/{id}")
     public @ResponseBody Map<String, String> getTaxon(@PathVariable("id") long id) {
         Map<String, String> response = new HashMap<>();
@@ -340,4 +316,31 @@ public class TaxonController {
             }
         }
     }
+
+    public Taxon getTaxonbyId(@PathVariable("id") long id) {
+        Taxon taxon = null;
+        taxon = kingdomService.getKingdomById(id);
+        if (taxon == null) {
+            taxon = phylumService.getPhylumById(id);
+            if (taxon == null) {
+                taxon = classService.getClassById(id);
+                if (taxon == null) {
+                    taxon = orderService.getOrderById(id);
+                    if (taxon == null) {
+                        taxon = familyService.getFamilyById(id);
+                        if (taxon == null) {
+                            taxon = genusService.getGenusById(id);
+                            if (taxon == null) {
+                                taxon = speciesService.getSpeciesById(id);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return taxon;
+    }
+
 }
+
+
