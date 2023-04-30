@@ -52,7 +52,6 @@ public class TaxonController {
 
         Map<String, String> response = new HashMap<>();
         String type = (String) data.get("typeClass");
-        System.out.println("llega");
 
         if (data.get("id") != null){ //update
             switch (type) {
@@ -66,18 +65,21 @@ public class TaxonController {
                     break;
 
                 case "genus":
-                    Genus genus = new Genus((String) data.get("scientificName"),(String) data.get("author"), (int) data.get("publicationYear"), (long) data.get("ancestorID"));
+                    Genus genus = new Genus();
+                    genus.setScientificName((String) data.get("scientificName"));
+                    genus.setAuthor((String) data.get("author"));
+                    genus.setPublicationYear((int) data.get("publicationYear"));
+                    genus.setAncestorID((long) data.get("ancestorID"));
                     genus.setId((long) data.get("id"));
                     genusService.updateGenus(genus);
                     break;
 
                 case "phylum":
                     Phylum phylum = new Phylum();
-                    System.out.println("llegaaaaaaa");
                     phylum.setScientificName((String) data.get("scientificName"));
                     phylum.setAuthor((String) data.get("author"));
                     phylum.setPublicationYear((int) data.get("publicationYear"));
-                    phylum.setAncestorID(55);
+                    phylum.setAncestorID((long) data.get("ancestorID"));
                     phylum.setId((long) data.get("id"));
                     System.out.println("phylum");
                     phylumService.updatePhylum(phylum);
@@ -141,17 +143,20 @@ public class TaxonController {
                     break;
 
                 case "genus":
-                    Genus genus = new Genus((String) data.get("scientificName"),(String) data.get("author"), (int) data.get("publicationYear"), (long) data.get("ancestorID"));
+                    Genus genus = new Genus();
+                    genus.setScientificName((String) data.get("scientificName"));
+                    genus.setAuthor((String) data.get("author"));
+                    genus.setPublicationYear((int) data.get("publicationYear"));
+                    genus.setAncestorID((long) data.get("ancestorID"));
                     genusService.addGenus(genus);
                     break;
 
                 case "phylum":
                     Phylum phylum = new Phylum();
-                    System.out.println("llegaaaaaaa");
                     phylum.setScientificName((String) data.get("scientificName"));
                     phylum.setAuthor((String) data.get("author"));
                     phylum.setPublicationYear((int) data.get("publicationYear"));
-                    phylum.setAncestorID(55);
+                    phylum.setAncestorID((long) data.get("ancestorID"));
                     System.out.println("phylum");
                     phylumService.addPhylum(phylum);
                     break;
@@ -257,9 +262,8 @@ public class TaxonController {
         return response;
     }
 
-
-    @RequestMapping("/{id}")
-    public Taxon getTaxon(@PathVariable("id") long id) {
+    @RequestMapping("/taxon/{id}")
+    public Taxon getTaxonbyId(@PathVariable("id") long id) {
         Taxon taxon = null;
         taxon = kingdomService.getKingdomById(id);
         if (taxon == null) {
@@ -283,9 +287,41 @@ public class TaxonController {
         return taxon;
     }
 
+    @RequestMapping("/taxon/{id}")
+    public @ResponseBody Map<String, String> getTaxon(@PathVariable("id") long id) {
+        Map<String, String> response = new HashMap<>();
+        Taxon taxon = null;
+        taxon = kingdomService.getKingdomById(id);
+        if (taxon == null) {
+            taxon = phylumService.getPhylumById(id);
+            if (taxon == null) {
+                taxon = classService.getClassById(id);
+                if (taxon == null) {
+                    taxon = orderService.getOrderById(id);
+                    if (taxon == null) {
+                        taxon = familyService.getFamilyById(id);
+                        if (taxon == null) {
+                            taxon = genusService.getGenusById(id);
+                            if (taxon == null) {
+                                taxon = speciesService.getSpeciesById(id);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (taxon != null) {
+            response.put("scientificName", taxon.getScientificName());
+            response.put("author", taxon.getAuthor());
+            response.put("publicationYear", String.valueOf(taxon.getPublicationYear()));
+            response.put("ancestorID", String.valueOf(taxon.getAncestorID()));
+        }
+        return response;
+    }
+
     @DeleteMapping("/delete/{id}")
     public void deleteTaxon(@PathVariable("id") long id) {
-        Taxon taxon = getTaxon(id);
+        Taxon taxon = getTaxonbyId(id);
         if (taxon != null) {
             if (taxon instanceof Kingdom) {
                 kingdomService.deleteKingdom(id);
