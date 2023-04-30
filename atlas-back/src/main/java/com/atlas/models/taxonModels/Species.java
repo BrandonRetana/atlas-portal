@@ -15,7 +15,8 @@ public class Species extends Taxon{
         this.ancestorID = ancestorID;
     }
 
-    public Species(){}
+    public Species(){
+    }
 
      
     public long getAncestorID() {

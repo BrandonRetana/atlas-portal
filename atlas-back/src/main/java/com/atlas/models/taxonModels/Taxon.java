@@ -2,12 +2,10 @@ package com.atlas.models.taxonModels;
 
 import javax.validation.constraints.NotNull;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.mapping.Set;
+
+import java.util.HashSet;
 
 @Entity
 @Table(name = "taxon")
