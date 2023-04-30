@@ -8,6 +8,7 @@ import { SingleImageInfoComponent } from './single-image-info/single-image-info.
 import { FormTaxonComponent } from './form-taxon/form-taxon.component';
 import { TableKingdomComponent } from './taxon-tables/table-kingdom/table-kingdom.component';
 
+
 const routes: Routes = [
   {
     path:"",

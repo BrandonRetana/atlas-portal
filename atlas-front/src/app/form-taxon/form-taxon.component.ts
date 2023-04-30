@@ -9,16 +9,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./form-taxon.component.css'],
 })
 export class FormTaxonComponent implements OnInit {
+  public isUpdate: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
-    private service: TaxonServiceService
+    private service: TaxonServiceService,
+    private route: ActivatedRoute
   ) { }
 
   public Authors: Array<any> = [];
 
   public ancestors: Array<any> = [];
 
-  private route: ActivatedRoute | undefined;
 
   public TaxonForm = this.formBuilder.group({
     id: [''],
@@ -31,13 +32,24 @@ export class FormTaxonComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.getAuthor();
     if(this.route){
+      console.log("no entro")
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
+        
         this.service.getTaxonById(id).subscribe((data) => {
-          this.TaxonForm.patchValue(data);
+          this.getAncestor(data['typeClass']);
+          this.TaxonForm.controls['id'].setValue(id);
+          this.TaxonForm.controls['typeClass'].setValue(data['typeClass']);
+          this.TaxonForm.controls['scientificName'].setValue(data['scientificName']);
+          this.TaxonForm.controls['author'].setValue(data['author']);
+          this.TaxonForm.controls['publicationYear'].setValue(data['publicationYear']);
+          this.TaxonForm.controls['ancestor'].setValue(data['ancestor']);
+          this.TaxonForm.controls['ancestorName'].setValue(data['ancestorName']);
+          this.TaxonForm.controls['author'].disable();
+          this.isUpdate = true;
+          console.log(data);
         });
       }
     })

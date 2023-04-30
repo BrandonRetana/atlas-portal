@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BackOfficeService } from '../../service/back-office.service';
-import { KingdomService } from 'src/app/service/taxon-service/kingdom.service';
+
 import { Router } from '@angular/router';
+import { BackOfficeService } from 'src/app/service/back-office.service';
+import { TaxonServiceService } from 'src/app/service/taxon-service.service';
+
 
 @Component({
   selector: 'app-table-kingdom',
@@ -9,9 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./table-kingdom.component.css']
 })
 export class TableKingdomComponent implements OnInit {
-  private router: Router | undefined;
   
-  constructor(private officeService:BackOfficeService, private service:KingdomService){
+  constructor(private service:TaxonServiceService, private router: Router){
   }
 
   ngOnInit() {
@@ -21,12 +22,13 @@ export class TableKingdomComponent implements OnInit {
   public data: Array<any> = [];
 
   public callService(){
-    this.officeService.getEddis().subscribe(data=>{
-      this.data = data["species"];
-      console.log(data);
-    },error => {
-      console.log("404 not found")
-    })
+    this.service.getKingdoms().subscribe((data: any) => {
+      this.data = data['kingdoms'];
+    },
+    error => {
+      console.log(error);
+    }
+    );
   }
 
 
@@ -36,6 +38,7 @@ export class TableKingdomComponent implements OnInit {
   }
 
   public editKingdom(id: string) {
+    console.log(id)
     if (this.router) {
       this.router.navigate(['/create/taxon', id]);
     }

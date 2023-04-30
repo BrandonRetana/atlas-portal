@@ -23,7 +23,7 @@
                 <td >{{species.publicationYear}} </td>
                 <td>
                     <!-- Agrega botones para editar y eliminar cada clase taxonómica -->
-                    <a class="btn btn-primary" > <i class="fas fa-edit"></i> Editar</a>
+                    <a class="btn btn-primary" (click)="editKingdom(species.id)" > <i class="fas fa-edit"></i> Editar</a>
                     <a class="btn btn-danger" (click)="deleteKingdom(species.id)" > <i class="fas fa-trash-alt"></i> Eliminar</a>
                 </td>
             </tr>

@@ -51,4 +51,10 @@ export class TaxonServiceService {
   public getTaxonById(id:string){
     return this.http.get<any>(`${this.url}taxon/${id}`)
   }
+
+  public delete(id:string){
+    this.http.delete(`${this.url}delete/${id}`).subscribe(() => {
+      console.log(`Kingdom with id: ${id} deleted`);
+    });
+  }
 }
