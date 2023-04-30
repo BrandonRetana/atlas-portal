@@ -65,9 +65,13 @@ public class TaxonController {
                     genus.setScientificName((String) data.get("scientificName"));
                     genus.setAuthor((String) data.get("author"));
                     genus.setPublicationYear(Integer.parseInt((String) data.get("publicationYear")));
-                    genus.setAncestorID(Integer.parseInt((String) data.get("ancestorID")));
+
+                    int ancestorID = Integer.parseInt((String) data.get("ancestorID"));
+                    genus.setAncestor(getTaxonbyId(Integer.parseInt((String) data.get("ancestorID"))));
+
                     id2 = Long.parseLong((String) data.get("id"));
                     genus.setId(id2);
+
                     genusService.updateGenus(genus);
                     break;
 
@@ -110,7 +114,11 @@ public class TaxonController {
                     family.setScientificName((String) data.get("scientificName"));
                     family.setAuthor((String) data.get("author"));
                     family.setPublicationYear(Integer.parseInt((String) data.get("publicationYear")));
-                    family.setAncestorID(Integer.parseInt((String) data.get("ancestorID")));
+
+                    int ancestorID1 = Integer.parseInt((String) data.get("ancestorID"));
+                    family.setAncestor(getTaxonbyId(Integer.parseInt((String) data.get("ancestorID"))));
+
+
                     id2 = Long.parseLong((String) data.get("id"));
                     family.setId(id2);
                     familyService.updateFamily(family);
@@ -149,7 +157,12 @@ public class TaxonController {
                     genus.setScientificName((String) data.get("scientificName"));
                     genus.setAuthor((String) data.get("author"));
                     genus.setPublicationYear((int) data.get("publicationYear"));
-                    genus.setAncestorID((int) data.get("ancestorID"));
+
+                    //genus.setAncestorID((int) data.get("ancestorID"));
+
+                    genus.setAncestor(getTaxonbyId((int) data.get("ancestorID")));
+
+
                     genusService.addGenus(genus);
                     break;
 
@@ -158,7 +171,9 @@ public class TaxonController {
                     phylum.setScientificName((String) data.get("scientificName"));
                     phylum.setAuthor((String) data.get("author"));
                     phylum.setPublicationYear((int) data.get("publicationYear"));
-                    phylum.setAncestorID((int) data.get("ancestorID"));
+                   // phylum.setAncestorID((int) data.get("ancestorID"));
+                    phylum.setAncestor(getTaxonbyId((int) data.get("ancestorID")));
+
                     System.out.println("phylum");
                     phylumService.addPhylum(phylum);
                     break;
@@ -168,7 +183,8 @@ public class TaxonController {
                     class1.setScientificName((String) data.get("scientificName"));
                     class1.setAuthor((String) data.get("author"));
                     class1.setPublicationYear((int) data.get("publicationYear"));
-                    class1.setAncestorID((int) data.get("ancestorID"));
+                   // class1.setAncestorID((int) data.get("ancestorID"));
+                    class1.setAncestor(getTaxonbyId((Integer) data.get("ancestorID")));
                     classService.addClass(class1);
                     break;
 
@@ -177,7 +193,8 @@ public class TaxonController {
                     order.setScientificName((String) data.get("scientificName"));
                     order.setAuthor((String) data.get("author"));
                     order.setPublicationYear((int) data.get("publicationYear"));
-                    order.setAncestorID((int) data.get("ancestorID"));
+                   // order.setAncestorID((int) data.get("ancestorID"));
+                    order.setAncestor(getTaxonbyId((int) data.get("ancestorID")));
                     orderService.addOrder(order);
                     break;
 
@@ -186,7 +203,9 @@ public class TaxonController {
                     family.setScientificName((String) data.get("scientificName"));
                     family.setAuthor((String) data.get("author"));
                     family.setPublicationYear((int) data.get("publicationYear"));
-                    family.setAncestorID((int) data.get("ancestorID"));
+                   // family.setAncestorID((int) data.get("ancestorID"));
+                    family.setAncestor(getTaxonbyId((Integer) data.get("ancestorID")));
+
                     familyService.addFamily(family);
                     break;
 
@@ -195,7 +214,8 @@ public class TaxonController {
                     species.setScientificName((String) data.get("scientificName"));
                     species.setAuthor((String) data.get("author"));
                     species.setPublicationYear((int) data.get("publicationYear"));
-                    species.setAncestorID((int) data.get("ancestorID"));
+                   // species.setAncestorID((int) data.get("ancestorID"));
+                    species.setAncestor(getTaxonbyId((int) data.get("ancestorID")));
                     speciesService.addSpecies(species);
                     break;
 

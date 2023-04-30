@@ -2,12 +2,7 @@ package com.atlas.models.taxonModels;
 
 import javax.validation.constraints.NotNull;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "taxon")
@@ -26,11 +21,12 @@ public abstract class Taxon {
     @Column(name = "publication_year")
     private int publicationYear;
 
-    @Column(name = "taxon_acestor_id")
-    public long ancestorID;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "taxon_ancestor_id")
+    private Taxon ancestor;
+    private long ancestorID;
 
-
-    public Taxon( @NotNull String scientificName, String author, int publicationYear) {
+    public Taxon( @NotNull String scientificName, String author, int publicationYear ) {
         this.scientificName = scientificName;
         this.author = author;
         this.publicationYear = publicationYear;
@@ -71,15 +67,22 @@ public abstract class Taxon {
     }
 
     public long getAncestorID() {
-        return ancestorID;
+        return ancestor.getId();
     }
-
     public void setAncestorID(long ancestorID) {
+        this.ancestor.setId(ancestorID);
         this.ancestorID = ancestorID;
     }
 
+    public Taxon getAncestor() {
+        return ancestor;
+    }
 
-    
+    public void setAncestor(Taxon ancestor) {
+        this.ancestor = ancestor;
+    }
+
+
     @Override
     public String toString() {
         return "Taxon [id=" + id + ", scientificName=" + scientificName + ", author=" + author + ", publicationYear="

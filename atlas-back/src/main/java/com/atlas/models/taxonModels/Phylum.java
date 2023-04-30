@@ -13,9 +13,9 @@ public class Phylum extends Taxon{
 
  
 
-    public Phylum(String scientificName, String author, int publicationYear, long ancestorID) {
+    public Phylum(String scientificName, String author, int publicationYear, Taxon ancestor) {
         super(scientificName, author, publicationYear);
-        this.ancestorID = ancestorID;
+        super.setAncestor(ancestor);
     }
 
     public Phylum(){}
@@ -29,6 +29,10 @@ public class Phylum extends Taxon{
     public void setAncestorID(long ancestorID) {
         super.setAncestorID(ancestorID);
           
+    }
+
+    public void setAncestor(Taxon ancestor) {
+        super.setAncestor(ancestor);
     }
 
     public String getScientificName() {

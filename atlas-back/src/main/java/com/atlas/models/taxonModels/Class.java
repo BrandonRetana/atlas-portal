@@ -9,9 +9,9 @@ import jakarta.persistence.Table;
 @Table(name = "Class")
 public class Class extends Taxon{
 
-    public Class(String scientificName, String author, int publicationYear, long ancestorID) {
+    public Class(String scientificName, String author, int publicationYear,Taxon ancestor) {
         super(scientificName, author, publicationYear);
-        this.ancestorID = ancestorID;
+        super.setAncestor(ancestor);
     }
 
     public Class(){}
@@ -23,9 +23,11 @@ public class Class extends Taxon{
 
     public void setAncestorID(long ancestorID) {
         super.setAncestorID(ancestorID);
-          
     }
 
+    public void setAncestor(Taxon ancestor) {
+        super.setAncestor(ancestor);
+    }
     public String getScientificName() {
         return super.getScientificName();
     }

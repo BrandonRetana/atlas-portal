@@ -11,9 +11,9 @@ import jakarta.persistence.Table;
 public class Family extends Taxon{
 
 
-    public Family(String scientificName, String author, int publicattonYear, long ancestorID) {
+    public Family(String scientificName, String author, int publicattonYear, Taxon ancestor) {
         super(scientificName, author, publicattonYear);
-        this.ancestorID = ancestorID;
+        super.setAncestor(ancestor);
     }
 
     public Family(){}
@@ -26,6 +26,10 @@ public class Family extends Taxon{
     public void setAncestorID(long ancestorID) {
         super.setAncestorID(ancestorID);
           
+    }
+
+    public void setAncestor(Taxon ancestor) {
+        super.setAncestor(ancestor);
     }
 
     public String getScientificName() {
