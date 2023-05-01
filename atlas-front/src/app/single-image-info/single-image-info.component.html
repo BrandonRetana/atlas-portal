@@ -1,25 +1,56 @@
 <div class="container">
-    <h1>Tucan</h1>
-    <img class="image" src="../../assets/img/tucan.jpg" alt="Descripción de la imagen">
-    <div class="text">
-        <h1>Título de la imagen</h1>
-        <p>Información sobre la imagen aquí...</p>
-    </div>
-    <table class="tabla">
-        <tr>
-            <th>Encabezado de la columna 1</th>
-            <th>Encabezado de la columna 2</th>
-            <th>Encabezado de la columna 3</th>
-        </tr>
-        <tr>
-            <td>Dato de la fila 1, columna 1</td>
-            <td>Dato de la fila 1, columna 2</td>
-            <td>Dato de la fila 1, columna 3</td>
-        </tr>
-        <tr>
-            <td>Dato de la fila 2, columna 1</td>
-            <td>Dato de la fila 2, columna 2</td>
-            <td>Dato de la fila 2, columna 3</td>
-        </tr>
-    </table>
+  <h1>{{ image.name }}</h1>
+  <img
+    class="image"
+    [src]="image.path"
+    [alt]="image.description"
+  />
+  <div class="text">
+    <p>{{image.description}}</p>
+  </div>
 </div>
+
+<div class="infot">
+    <h1 class="title">Taxonomia</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre cientifico</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Año de publicacion</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let taxon of image.taxon">
+            <td>{{ taxon.id }}</td>
+            <td>{{ taxon.scientificName }}</td>
+            <td>{{ taxon.author }}</td>
+            <td>{{ taxon.publicationYear }}</td>
+          </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div class="infot">
+    <h1 class="title">Informacion</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Fecha de creacion</th>
+            <th scope="col">Autor</th>
+            <th scope="col">licencia</th>
+          </tr>
+        </thead>
+        <tbody> 
+            <tr>
+                <td>{{ image.creationDate }}</td>
+                <td>{{ image.author.name }}</td>
+                <td>{{ image.license }}</td>
+              </tr>            
+    
+        </tbody>
+      </table>
+    </div>

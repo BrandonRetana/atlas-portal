@@ -19,4 +19,8 @@ export class ImageService {
     return this.http.get<any>(this.url+"list/image")
   }
 
+  public getImage(id: string){
+    return this.http.get<any>(this.url+"image/"+id);
+  }
+
 }

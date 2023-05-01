@@ -33,3 +33,18 @@ body{
     color: black;
     background-color: #f2f2f2;
 }
+
+.table {
+	color: white;
+}
+
+.infot {
+	max-width: 800px; /* Cambia este valor según tu necesidad */
+  	margin: 0 auto; 
+	margin-top: 100px;
+}
+
+.title {
+	color: white;
+	text-align: center;
+  }

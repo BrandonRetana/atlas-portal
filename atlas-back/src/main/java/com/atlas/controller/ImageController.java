@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.atlas.models.*;
 import com.atlas.models.taxonModels.Taxon;
@@ -72,6 +74,7 @@ public class ImageController {
         image.setPath("../../assets/" + file.getOriginalFilename());
         image.setDescription(imageDescription);
         image.setCreationDate(date);
+        image.setName(imageName);
 
         String getLicense = License.getTextFromNumero(license);
         image.setLicense(getLicense);
@@ -103,6 +106,14 @@ public class ImageController {
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al cargar el archivo");
         }
+    }
+
+    @GetMapping("/image/{id}")
+    public @ResponseBody Map<String, Object> getImageByID(@PathVariable("id") long id) {
+        Map<String, Object> map = new HashMap<>();
+        Image image = imageService.getImageById(id);
+        map.put("image", image);
+        return map;
     }
 
 

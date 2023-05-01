@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../service/image.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-gallery',
@@ -9,7 +10,7 @@ import { ImageService } from '../service/image.service';
 export class GalleryComponent implements OnInit{
   images: Array<any> = [];
 
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService, private router:Router) { }
 
 
   ngOnInit(): void {
@@ -22,4 +23,13 @@ export class GalleryComponent implements OnInit{
       this.images = data['images'];
     })
   }
+
+  public editKingdom(id: string) {
+    console.log(id)
+    if (this.router) {
+      this.router.navigate(['/page', id]);
+    }
+  }
+
+
 }

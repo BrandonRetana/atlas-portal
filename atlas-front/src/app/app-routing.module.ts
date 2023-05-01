@@ -24,7 +24,7 @@ const routes: Routes = [
     component: BackOfficeComponent
   },
   {
-    path:"page/tucan",
+    path:"page/:id",
     component:SingleImageInfoComponent
   },
   {

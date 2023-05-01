@@ -1,6 +1,6 @@
 <div class="gallery">
     <a *ngFor="let image of images" href="/page/{{ image.id }}">
-      <img *ngIf="image.path" [src]="image.path" [alt]="image.altText">
+      <img *ngIf="image.path" [src]="image.path" >
     </a>
   </div>
-  k
+  
