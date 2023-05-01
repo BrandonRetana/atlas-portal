@@ -13,6 +13,7 @@ import { FormTaxonComponent } from './form-taxon/form-taxon.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableKingdomComponent } from './table-kingdom/table-kingdom.component';
 import { TableTaxonComponent } from './table-taxon/table-taxon.component';
+import { TableImagesComponent } from './table-images/table-images.component';
 
 
 
@@ -28,6 +29,7 @@ import { TableTaxonComponent } from './table-taxon/table-taxon.component';
     FormTaxonComponent,
     TableKingdomComponent,
     TableTaxonComponent,
+    TableImagesComponent,
 
   ],
   imports: [

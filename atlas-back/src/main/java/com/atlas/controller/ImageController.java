@@ -116,6 +116,13 @@ public class ImageController {
         return map;
     }
 
+    @DeleteMapping("/delete/image/{id}")
+    public ResponseEntity<String> deleteImage(@PathVariable("id") long id) {
+        System.out.println("LLego");
+        imageService.deleteImage(id);
+        return ResponseEntity.ok("Imagen eliminada con éxito");
+    }
+
 
 
     public Taxon getTaxonbyId(@PathVariable("id") long id) {

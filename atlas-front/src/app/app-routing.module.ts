@@ -8,6 +8,7 @@ import { SingleImageInfoComponent } from './single-image-info/single-image-info.
 import { FormTaxonComponent } from './form-taxon/form-taxon.component';
 import { TableKingdomComponent } from './table-kingdom/table-kingdom.component';
 import { TableTaxonComponent } from './table-taxon/table-taxon.component';
+import { TableImagesComponent } from './table-images/table-images.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,11 @@ const routes: Routes = [
   {
     path: "list/taxons/:id",
     component:TableTaxonComponent
+  },
+  {
+    path: "list/images",
+    component:TableImagesComponent
+    
   }
 
  

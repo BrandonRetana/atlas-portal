@@ -23,4 +23,8 @@ export class ImageService {
     return this.http.get<any>(this.url+"image/"+id);
   }
 
+  public deleteImage(id: string){
+    return this.http.delete(this.url+"delete/image/"+id);
+  }
+
 }
