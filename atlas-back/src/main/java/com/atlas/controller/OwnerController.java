@@ -1,7 +1,9 @@
 package com.atlas.controller;
 
 import com.atlas.models.Owner;
+import com.atlas.models.Person;
 import com.atlas.service.OwnerService;
+import com.atlas.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +21,22 @@ public class OwnerController {
     @Autowired
     private OwnerService service;
 
-    @GetMapping("/list/author")
+    @Autowired
+    private PersonService personService;
+
+    @GetMapping("/list/owner")
     public @ResponseBody Map<String, Object> getOwners(){
         Map<String, Object> response = new HashMap<>();
         List<Owner> owners = service.getAllOwner();
-        response.put("authors", owners);
+        response.put("owners", owners);
+        return response;
+    }
+
+    @GetMapping("/list/person")
+    public @ResponseBody Map<String, Object> getPersons(){
+        Map<String, Object> response = new HashMap<>();
+        List<Person> persons = personService.getAllPersons();
+        response.put("persons", persons);
         return response;
     }
 

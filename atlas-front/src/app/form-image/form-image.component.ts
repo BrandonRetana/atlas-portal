@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ImageService } from '../service/image.service';
 import { TaxonServiceService } from '../service/taxon-service.service';
+import { OwnerService } from '../service/owner.service';
 
 
 @Component({
@@ -19,9 +20,11 @@ export class FormImageComponent implements OnInit{
   families: Array<any> = [];
   genus: Array<any> = [];
   species: Array<any> = [];
+  authors: Array<any> = [];
+  owners: Array<any> = [];
   
   
-  constructor(private service: ImageService, private formBuilder: FormBuilder, private taxonService:TaxonServiceService) { 
+  constructor(private service: ImageService, private formBuilder: FormBuilder, private taxonService:TaxonServiceService, private ownerService:OwnerService) { 
   }
 
 
@@ -35,12 +38,14 @@ export class FormImageComponent implements OnInit{
     imageName: ['', Validators.required],
     imageDescription: ['', Validators.required],
     date:['', Validators.required],
-    keywords:['', Validators.required],
     author:['', Validators.required],
     authorName:['', Validators.required],
     owner:['', Validators.required],
     ownerName:['', Validators.required],
     license:['', Validators.required],
+
+    checkbox1:[''],
+    checkbox2:[''],
 
     kingdom:[''],
     phylum:[''],
@@ -70,6 +75,22 @@ export class FormImageComponent implements OnInit{
     const formData = new FormData();
     formData.append('image', this.selectedFile);
     formData.append('imageName', this.ImageForm.controls['imageName'].value || '');
+    formData.append('imageDescription', this.ImageForm.controls['imageDescription'].value || '');
+    formData.append('date', this.ImageForm.controls['date'].value || '');
+    formData.append('author', this.ImageForm.controls['author'].value || '');
+    formData.append('owner', this.ImageForm.controls['owner'].value || '');
+    formData.append('license', this.ImageForm.controls['license'].value || '');
+    const checkbox1 = this.ImageForm.controls['checkbox1'].value ? 'Angiospermae' : 'Planta';
+    formData.append('checkbox1', checkbox1);
+    const checkbox2 = this.ImageForm.controls['checkbox2'].value ? 'Gymnospermae' : 'Planta';
+    formData.append('checkbox2', checkbox2);
+    formData.append('kingdom', this.ImageForm.controls['kingdom'].value || '');
+    formData.append('phylum', this.ImageForm.controls['phylum'].value || '');
+    formData.append('class', this.ImageForm.controls['class'].value || '');
+    formData.append('order', this.ImageForm.controls['order'].value || '');
+    formData.append('family', this.ImageForm.controls['family'].value || '');
+    formData.append('genus', this.ImageForm.controls['genus'].value || '');
+    formData.append('species', this.ImageForm.controls['species'].value || '');
     this.service.submitImage(formData).subscribe(response => console.log(response));
   }
 
@@ -162,6 +183,7 @@ export class FormImageComponent implements OnInit{
     } else if ((taxonomy = this.species.find((t) => t.id === ancestorId))) {
       this.ImageForm.controls['species'].setValue(taxonomy.id);
       this.ImageForm.controls['speciesName'].setValue(taxonomy.scientificName);
+
       
     } else {
       console.log("No se encontró ningún ancestro correspondiente");
@@ -209,6 +231,16 @@ export class FormImageComponent implements OnInit{
 
     this.taxonService.getSpecies().subscribe((data) => {
       this.species = data['species'];
+    }
+    );
+
+    this.ownerService.getOwner().subscribe((data) => {
+      this.owners = data['owners'];
+    }
+    );
+
+    this.ownerService.getPerson().subscribe((data) => {
+      this.authors = data['persons'];
     }
     );
   }

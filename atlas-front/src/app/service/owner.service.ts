@@ -4,19 +4,17 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ImageService {
+export class OwnerService {
 
   constructor(private http: HttpClient) { }
 
-
   private url: string = "http://localhost:8080/";
 
-  public submitImage(formData:any){
-    return this.http.post(this.url+"upload/image", formData);
+  public getOwner(){
+    return this.http.get<any>(this.url+"list/owner")
   }
 
-  public getImages(){
-    return this.http.get<any>(this.url+"list/image")
+  public getPerson(){
+    return this.http.get<any>(this.url+"list/person")
   }
-
 }

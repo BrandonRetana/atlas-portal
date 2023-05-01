@@ -5,15 +5,7 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import com.atlas.models.taxonModels.Taxon;
 
@@ -31,7 +23,7 @@ public class Image {
 
     @NotNull
     @Column(name = "creation_date")
-    private Date creationDate;
+    private String creationDate;
 
     @ElementCollection
     private List<String> keywords;
@@ -45,7 +37,7 @@ public class Image {
     @NotNull
     private String license;
 
-    @OneToMany
+    @ManyToMany
     private List<Taxon> taxon;
 
     private String path;
@@ -68,11 +60,11 @@ public class Image {
         this.description = description;
     }
 
-    public Date getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -108,7 +100,11 @@ public class Image {
     public void setPath(String path) {
         this.path = path;
     }
-    
-    
 
+
+    public void setKeywords(List<String> keywords) {
+    }
+
+    public void setOwner(Owner owner1) {
+    }
 }
