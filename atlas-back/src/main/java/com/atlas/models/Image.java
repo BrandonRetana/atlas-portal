@@ -27,6 +27,7 @@ public class Image {
     private String creationDate;
 
     @ElementCollection
+    @NotNull
     private List<String> keywords;
 
     @OneToOne
@@ -43,7 +44,8 @@ public class Image {
 
     private String path;
 
-    public Image (){}
+    public Image() {
+    }
 
     public long getId() {
         return id;
@@ -51,6 +53,14 @@ public class Image {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -69,6 +79,13 @@ public class Image {
         this.creationDate = creationDate;
     }
 
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(List<String> keywords) {
+        this.keywords = keywords;
+    }
 
     public Person getAuthor() {
         return author;
@@ -76,6 +93,14 @@ public class Image {
 
     public void setAuthor(Person author) {
         this.author = author;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public String getLicense() {
@@ -100,21 +125,5 @@ public class Image {
 
     public void setPath(String path) {
         this.path = path;
-    }
-
-
-    public void setKeywords(List<String> keywords) {
-    }
-
-    public void setOwner(Owner owner1) {
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

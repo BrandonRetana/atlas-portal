@@ -26,7 +26,6 @@ export class TableImagesComponent implements OnInit{
     deleteImage(id: string){
       this.imageService.deleteImage(id).subscribe(data => {
         console.log(data);
-        this.loadImages();
       })
       window.location.reload();
     }

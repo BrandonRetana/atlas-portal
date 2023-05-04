@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,8 +79,9 @@ public class ImageController {
 
         String getLicense = License.getTextFromNumero(license);
         image.setLicense(getLicense);
-
-       List<String> keywords = List.of(checkbox1, checkbox2);
+        List<String> keywords = new ArrayList<>();
+        keywords.add(checkbox1);
+        keywords.add(checkbox2);
         image.setKeywords(keywords);
 
         Person person = personService.getPersonById(Long.parseLong(author));
@@ -154,6 +156,16 @@ public class ImageController {
         }
         return owner;
     }
+
+
+    @GetMapping("/list/image")
+    public @ResponseBody Map<String, Object> getOwners(){
+        Map<String, Object> response = new HashMap<>();
+        List<Image> images = imageService.getAllImages();
+        response.put("images", images);
+        return response;
+    }
+
 
 
 }
