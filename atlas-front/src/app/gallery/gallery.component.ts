@@ -15,6 +15,7 @@ export class GalleryComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this.loadImages();
   }
 
   public thisImage = this.formBuilder.group({
@@ -37,13 +38,23 @@ export class GalleryComponent implements OnInit{
 
 
 
-  filterImages(text: string) {
-    return this.images.filter(image => {
-      if (image.name.includes(text)) {
-        return true;
+  filterImages(text: string): Array<any> {
+    let filteredImages: Array<any> = [];
+    for (let i = 0; i < this.images.length; i++) {
+      let image = this.images[i];
+      if (image.name === text) {
+        filteredImages.push(image);
       }
-      return true;
-    });
+      let taxons = image.taxon;
+      for (let j = 0; j < taxons.length; j++) {
+        let taxon = taxons[j];
+        if (taxon.scientificName === text) {
+          filteredImages.push(image);
+        }
+      }
+    }
+    console.log(filteredImages);
+    return filteredImages;
   }
   
 
