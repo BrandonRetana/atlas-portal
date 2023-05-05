@@ -1,6 +1,17 @@
+
+<div class="search-container" >
+  <form action="/busqueda" [formGroup]="thisImage" (ngSubmit)="search()">
+    <input type="text" placeholder="Buscar..." formControlName="text">
+  </form>
+  <button class="search-button" type="submit"><i class="fa fa-search" (click)="search()"></i></button> 
+  </div>
+
 <div class="gallery">
     <a *ngFor="let image of images" href="/page/{{ image.id }}">
       <img *ngIf="image.path" [src]="image.path" >
     </a>
   </div>
+
+  {{thisImage.controls["text"].value}}
   
+

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../service/image.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-images',
@@ -10,7 +11,7 @@ export class TableImagesComponent implements OnInit{
   images: Array<any> = [];
 
   
-    constructor(private imageService:ImageService) { }
+    constructor(private imageService:ImageService, private router:Router) { }
   
     ngOnInit(): void {
       this.loadImages();
@@ -28,6 +29,13 @@ export class TableImagesComponent implements OnInit{
         console.log(data);
       })
       window.location.reload();
+    }
+
+    public update(id: string) {
+      console.log(id)
+      if (this.router) {
+        this.router.navigate(['/create/image', id]);
+      }
     }
 
 

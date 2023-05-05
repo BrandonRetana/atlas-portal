@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ImageService } from '../service/image.service';
 import { TaxonServiceService } from '../service/taxon-service.service';
 import { OwnerService } from '../service/owner.service';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 
 @Component({
@@ -22,16 +23,17 @@ export class FormImageComponent implements OnInit{
   species: Array<any> = [];
   authors: Array<any> = [];
   owners: Array<any> = [];
+  isUpdate: boolean = false;
+  updateId: string = '';
   
   
-  constructor(private service: ImageService, private formBuilder: FormBuilder, private taxonService:TaxonServiceService, private ownerService:OwnerService) { 
+  constructor(private service: ImageService, 
+    private formBuilder: FormBuilder, 
+    private taxonService:TaxonServiceService, 
+    private ownerService:OwnerService, 
+    private route: ActivatedRoute,
+    private router:Router) { 
   }
-
-
-  ngOnInit(): void {
-    this.loadTaxonData();
-  }
-
 
   public ImageForm = this.formBuilder.group({
     selectedFile: [null, Validators.required],
@@ -62,6 +64,20 @@ export class FormImageComponent implements OnInit{
     genusName:[''],
     speciesName:[''],
   });
+
+  ngOnInit(): void {
+    this.loadTaxonData();
+    if(this.route){
+      this.route.paramMap.subscribe((params) => {
+        const id = params.get('id');
+        if (id) {
+          this.isUpdate = true;
+          this.updateId = id;
+        }
+      })
+    }
+
+  }
   
   
   onFileChange(event: Event): void {
@@ -73,6 +89,7 @@ export class FormImageComponent implements OnInit{
   
   onSubmit(): void {
     const formData = new FormData();
+    formData.append('id', this.updateId || '')
     formData.append('image', this.selectedFile);
     formData.append('imageName', this.ImageForm.controls['imageName'].value || '');
     formData.append('imageDescription', this.ImageForm.controls['imageDescription'].value || '');
@@ -91,7 +108,11 @@ export class FormImageComponent implements OnInit{
     formData.append('family', this.ImageForm.controls['family'].value || '');
     formData.append('genus', this.ImageForm.controls['genus'].value || '');
     formData.append('species', this.ImageForm.controls['species'].value || '');
+    if(this.isUpdate){
+      this.service.updateImage(formData, this.updateId).subscribe(response => console.log(response));
+    }else{
     this.service.submitImage(formData).subscribe(response => console.log(response));
+    }
   }
 
   public setAuthor(id:string, name:string){
@@ -245,8 +266,6 @@ export class FormImageComponent implements OnInit{
     );
   }
 
-
- 
 }
 
 

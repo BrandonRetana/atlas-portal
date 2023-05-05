@@ -101,7 +101,6 @@ public class ImageController {
         imageService.addImage(image);
 
         try {
-            System.out.println("LLego");
             Path path = Paths.get("/home/brandon/Git/atlas-portal/atlas-front/src/assets/" + file.getOriginalFilename());
             Files.write(path, file.getBytes());
             return ResponseEntity.ok("Archivo cargado con éxito");
@@ -164,6 +163,63 @@ public class ImageController {
         List<Image> images = imageService.getAllImages();
         response.put("images", images);
         return response;
+    }
+
+    @PutMapping("/update/image/{id}")
+    public ResponseEntity<String> updateImage(@PathVariable("id") long id,
+                                              @RequestParam("image") MultipartFile file,
+                                              @RequestParam("imageName") String imageName,
+                                              @RequestParam("imageDescription") String imageDescription,
+                                              @RequestParam("date") String date,
+                                              @RequestParam("author") String author,
+                                              @RequestParam("owner") String owner,
+                                              @RequestParam("license") String license,
+                                              @RequestParam("checkbox1") String checkbox1,
+                                              @RequestParam("checkbox2") String checkbox2,
+                                              @RequestParam("kingdom") String kingdom,
+                                              @RequestParam("phylum") String phylum,
+                                              @RequestParam("class") String clazz,
+                                              @RequestParam("order") String order,
+                                              @RequestParam("family") String family,
+                                              @RequestParam("genus") String genus,
+                                              @RequestParam("species") String species) {
+        deleteImage(id);
+        Image image = new Image();
+        image.setPath("../../assets/" + file.getOriginalFilename());
+        image.setDescription(imageDescription);
+        image.setCreationDate(date);
+        image.setName(imageName);
+
+        String getLicense = License.getTextFromNumero(license);
+        image.setLicense(getLicense);
+        List<String> keywords = new ArrayList<>();
+        keywords.add(checkbox1);
+        keywords.add(checkbox2);
+        image.setKeywords(keywords);
+
+        Person person = personService.getPersonById(Long.parseLong(author));
+        image.setAuthor(person);
+
+        Owner owner1 = getOwnerbyId(Long.parseLong(owner));
+        image.setOwner(owner1);
+
+        Taxon species1 = getTaxonbyId(Long.parseLong(species));
+        Taxon genus1 = getTaxonbyId(Long.parseLong(genus));
+        Taxon family1 = getTaxonbyId(Long.parseLong(family));
+        Taxon order1 = getTaxonbyId(Long.parseLong(order));
+        Taxon class1 = getTaxonbyId(Long.parseLong(clazz));
+        Taxon phylum1 = getTaxonbyId(Long.parseLong(phylum));
+        Taxon kingdom1 = getTaxonbyId(Long.parseLong(kingdom));
+        image.setTaxon(List.of(species1, genus1, family1, order1, class1, phylum1, kingdom1));
+        imageService.updateImage(image);
+
+        try {
+            Path path = Paths.get("/home/brandon/Git/atlas-portal/atlas-front/src/assets/" + file.getOriginalFilename());
+            Files.write(path, file.getBytes());
+            return ResponseEntity.ok("Archivo cargado con éxito");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al cargar el archivo");
+        }
     }
 
 

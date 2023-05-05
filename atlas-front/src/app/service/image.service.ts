@@ -27,4 +27,8 @@ export class ImageService {
     return this.http.delete(this.url+"delete/image/"+id);
   }
 
+  public updateImage(formData:any, id:string){
+    return this.http.put(this.url+"update/image/"+id, formData);
+  }
+
 }

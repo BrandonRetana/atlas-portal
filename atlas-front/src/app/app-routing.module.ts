@@ -51,7 +51,10 @@ const routes: Routes = [
   {
     path: "list/images",
     component:TableImagesComponent
-    
+  },
+  {
+    path: "create/image/:id",
+    component:FormImageComponent
   }
 
  

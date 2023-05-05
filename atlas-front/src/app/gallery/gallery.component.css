@@ -17,3 +17,34 @@
 	width: 200px;
   }
   
+  .search-container {
+	position: relative;
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
+	background-color: #011314;
+	border-radius: 20px 0px 0px 20px;
+  }
+  
+  .search-container input[type=text] {
+	padding: 6px;
+	border: none;
+	margin: 0;
+	width: 130px;
+	border-radius: 20px;
+  }
+  
+  .search-container button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 6px 10px;
+	border-radius: 0px 20px 20px 0px;
+	background-color: #ccc;
+	color: black;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	
+  }
