@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.GeneralInterface;
 import com.atlas.repository.OrderRepository;
 import com.atlas.models.taxonModels.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OrderService {
+public class OrderService implements GeneralInterface {
 
     @Autowired
     OrderRepository orderRepository;
@@ -47,6 +48,11 @@ public class OrderService {
 
     public boolean isPresent(long id) {
         return orderRepository.existsById(id);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Order";
     }
     
 }

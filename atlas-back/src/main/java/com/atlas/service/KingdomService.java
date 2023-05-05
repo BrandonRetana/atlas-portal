@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.GeneralInterface;
 import com.atlas.repository.KingdomRepository;
 import com.atlas.models.taxonModels.Kingdom;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class KingdomService {
+public class KingdomService implements GeneralInterface {
 
     @Autowired
     private KingdomRepository kingdomRepository;
@@ -47,6 +48,11 @@ public class KingdomService {
 
     public boolean isPresent(long id) {
         return kingdomRepository.existsById(id);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Kingdom";
     }
  
 }

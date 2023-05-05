@@ -2,6 +2,7 @@ package com.atlas.models.taxonModels;
 
 import javax.validation.constraints.NotNull;
 
+import com.atlas.GeneralInterface;
 import jakarta.persistence.*;
 import org.hibernate.mapping.Set;
 
@@ -9,7 +10,7 @@ import java.util.HashSet;
 
 @Entity
 @Table(name = "taxon")
-public abstract class Taxon {
+public abstract class Taxon implements GeneralInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -82,6 +83,11 @@ public abstract class Taxon {
     public String toString() {
         return "Taxon [id=" + id + ", scientificName=" + scientificName + ", author=" + author + ", publicationYear="
                 + publicationYear + "]";
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Taxon";
     }
 
     

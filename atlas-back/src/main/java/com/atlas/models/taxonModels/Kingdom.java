@@ -1,13 +1,14 @@
 package com.atlas.models.taxonModels;
 
 
+import com.atlas.GeneralInterface;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 
 @Entity
 @Table(name = "kingdom")
-public class Kingdom extends Taxon{
+public class Kingdom extends Taxon implements GeneralInterface {
 
     public Kingdom(String scientificName, String author, int publicationYear) {
         super( scientificName, author, publicationYear);
@@ -69,6 +70,11 @@ public class Kingdom extends Taxon{
     public String toString() {
         // TODO Auto-generated method stub
         return super.toString();
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Kingdom";
     }
 
     

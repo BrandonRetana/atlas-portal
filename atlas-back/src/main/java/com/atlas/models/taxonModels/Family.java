@@ -1,6 +1,7 @@
 package com.atlas.models.taxonModels;
 
 
+import com.atlas.GeneralInterface;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -8,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Family")
-public class Family extends Taxon{
+public class Family extends Taxon implements GeneralInterface {
 
 
     public Family(String scientificName, String author, int publicattonYear, long ancestorID) {
@@ -50,6 +51,11 @@ public class Family extends Taxon{
 
     public void setPublicattonYear(int publicationYear) {
         super.setPublicationYear(publicationYear);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Family";
     }
    
 }

@@ -1,6 +1,7 @@
 package com.atlas.models.taxonModels;
 
 
+import com.atlas.GeneralInterface;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -9,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Phylum")
-public class Phylum extends Taxon{
+public class Phylum extends Taxon implements GeneralInterface {
 
  
 
@@ -53,6 +54,11 @@ public class Phylum extends Taxon{
 
     public void setPublicattonYear(int publicationYear) {
         super.setPublicationYear(publicationYear);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Phylum";
     }
 
     

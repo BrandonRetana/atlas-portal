@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.GeneralInterface;
 import com.atlas.repository.GenusRepository;
 import com.atlas.models.taxonModels.Genus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class GenusService {
+public class GenusService implements GeneralInterface {
     @Autowired
     GenusRepository genusRepository;
 
@@ -47,6 +48,11 @@ public class GenusService {
 
     public boolean isPresent(long id) {
         return genusRepository.existsById(id);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Genus";
     }
 
 }

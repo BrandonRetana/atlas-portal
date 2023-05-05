@@ -13,6 +13,7 @@ import com.atlas.models.taxonModels.Taxon;
 @Entity
 @Table(name = "image")
 public class Image {
+    private static int count = 0;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -45,6 +46,7 @@ public class Image {
     private String path;
 
     public Image() {
+        count++;
     }
 
     public long getId() {
@@ -125,5 +127,9 @@ public class Image {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public static int getCount() {
+        return count;
     }
 }

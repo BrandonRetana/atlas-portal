@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.GeneralInterface;
 import com.atlas.repository.FamilyRepository;
 import com.atlas.models.taxonModels.Family;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FamilyService {
+public class FamilyService implements GeneralInterface {
     @Autowired
     private FamilyRepository familyRepository;
 
@@ -51,6 +52,11 @@ public class FamilyService {
 
     public boolean isPresent(long id) {
         return familyRepository.existsById(id);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Family";
     }
     
 

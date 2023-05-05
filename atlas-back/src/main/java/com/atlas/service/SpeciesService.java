@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.GeneralInterface;
 import com.atlas.models.taxonModels.Species;
 import com.atlas.repository.SpeciesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SpeciesService {
+public class SpeciesService implements GeneralInterface {
 
     @Autowired
     SpeciesRepository speciesRepository;
@@ -47,6 +48,11 @@ public class SpeciesService {
 
     public boolean isPresent(long id) {
         return speciesRepository.existsById(id);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Species";
     }
 
 }

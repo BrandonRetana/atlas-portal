@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.atlas.GeneralInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ import com.atlas.service.KingdomService;
 
 @Controller
 @RequestMapping
-public class BackOfficeController {
+public class BackOfficeController implements GeneralInterface {
 
     @Autowired
     private KingdomService kingdomService;
@@ -35,5 +36,10 @@ public class BackOfficeController {
         kingdomService.addKingdom(k);
 
         return "index";
+    }
+
+    @Override
+    public String obetnerString() {
+        return "BackOffice";
     }
 }

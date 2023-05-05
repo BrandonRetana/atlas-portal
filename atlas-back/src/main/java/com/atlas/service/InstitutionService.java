@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.GeneralInterface;
 import com.atlas.models.Institution;
 import com.atlas.repository.InstitutionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class InstitutionService {
+public class InstitutionService implements GeneralInterface {
     @Autowired
     private InstitutionRepository institutionRepository;
 
@@ -34,5 +35,10 @@ public class InstitutionService {
 
     public boolean isPresent(long id) {
         return institutionRepository.existsById(id);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Institution";
     }
 }

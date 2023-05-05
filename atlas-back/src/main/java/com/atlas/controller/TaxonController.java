@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.List;
 
 
+import com.atlas.GeneralInterface;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -23,7 +24,7 @@ import com.atlas.models.taxonModels.Class;
 
 @RestController
 @RequestMapping()
-public class TaxonController {
+public class TaxonController implements GeneralInterface {
 
     @Autowired
     private KingdomService kingdomService;
@@ -346,7 +347,10 @@ public class TaxonController {
     }
 
 
-
+    @Override
+    public String obetnerString() {
+        return "Taxon Controller";
+    }
 }
 
 

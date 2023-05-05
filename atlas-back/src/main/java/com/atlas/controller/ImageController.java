@@ -232,36 +232,43 @@ public class ImageController {
         Owner owner1 = getOwnerbyId(Long.parseLong(owner));
         image.setOwner(owner1);
 
-        if(kingdom.equals("")){
-            kingdom = "-1";
+        Taxon species1;
+        Taxon genus1 ;
+        Taxon family1;
+        Taxon order1 ;
+        Taxon class1 ;
+        Taxon phylum1;
+        Taxon kingdom1;
+        List<Taxon> taxonList = new ArrayList<>();
+        if(!kingdom.equals("")) {
+            kingdom1 = getTaxonbyId(Long.parseLong(kingdom));
+            taxonList.add(kingdom1);
         }
-        if(phylum.equals("")){
-            phylum = "-1";
+        if(!phylum.equals("")) {
+            phylum1 = getTaxonbyId(Long.parseLong(phylum));
+            taxonList.add(phylum1);
         }
-        if(clazz.equals("")){
-            clazz = "-1";
+        if(!clazz.equals("")) {
+            class1 = getTaxonbyId(Long.parseLong(clazz));
+            taxonList.add(class1);
         }
-        if(order.equals("")){
-            order = "-1";
+        if(!order.equals("")) {
+            order1 = getTaxonbyId(Long.parseLong(order));
+            taxonList.add(order1);
         }
-        if(family.equals("")){
-            family = "-1";
+        if(!family.equals("")) {
+            family1 = getTaxonbyId(Long.parseLong(family));
+            taxonList.add(family1);
         }
-        if(genus.equals("")){
-            genus = "-1";
+        if(!genus.equals("")) {
+            genus1 = getTaxonbyId(Long.parseLong(genus));
+            taxonList.add(genus1);
         }
-        if(species.equals("")){
-            species = "-1";
+        if(!species.equals("")) {
+            species1 = getTaxonbyId(Long.parseLong(species));
+            taxonList.add(species1);
         }
-
-        Taxon species1 = getTaxonbyId(Long.parseLong(species));
-        Taxon genus1 = getTaxonbyId(Long.parseLong(genus));
-        Taxon family1 = getTaxonbyId(Long.parseLong(family));
-        Taxon order1 = getTaxonbyId(Long.parseLong(order));
-        Taxon class1 = getTaxonbyId(Long.parseLong(clazz));
-        Taxon phylum1 = getTaxonbyId(Long.parseLong(phylum));
-        Taxon kingdom1 = getTaxonbyId(Long.parseLong(kingdom));
-        image.setTaxon(List.of(species1, genus1, family1, order1, class1, phylum1, kingdom1));
+        image.setTaxon(taxonList);
         imageService.updateImage(image);
 
         try {

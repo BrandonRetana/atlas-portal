@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.GeneralInterface;
 import com.atlas.models.Person;
 import com.atlas.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class PersonService {
+public class PersonService implements GeneralInterface {
     @Autowired
     private PersonRepository personRepository;
 
@@ -39,6 +40,11 @@ public class PersonService {
 
     public boolean isPresent(long id) {
         return personRepository.existsById(id);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Person";
     }
 
 }

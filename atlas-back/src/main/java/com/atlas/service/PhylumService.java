@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.GeneralInterface;
 import com.atlas.repository.PhylumRepository;
 import com.atlas.models.taxonModels.Phylum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PhylumService{
+public class PhylumService implements GeneralInterface {
 
     @Autowired
     PhylumRepository phylumRepository;
@@ -48,6 +49,11 @@ public class PhylumService{
 
     public boolean isPresent(long id) {
         return phylumRepository.existsById(id);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Phylum";
     }
 
 }

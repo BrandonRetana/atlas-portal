@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.GeneralInterface;
 import com.atlas.models.Image;
 import com.atlas.repository.ImageRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ImageService {
+public class ImageService implements GeneralInterface {
     @Autowired
     private ImageRepository imageRepository;
 
@@ -41,6 +42,11 @@ public class ImageService {
 
     public boolean isPresent(long id) {
         return imageRepository.existsById(id);
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Image";
     }
 
 

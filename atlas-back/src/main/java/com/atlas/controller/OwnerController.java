@@ -1,5 +1,6 @@
 package com.atlas.controller;
 
+import com.atlas.GeneralInterface;
 import com.atlas.models.Owner;
 import com.atlas.models.Person;
 import com.atlas.service.OwnerService;
@@ -16,7 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping
-public class OwnerController {
+public class OwnerController implements GeneralInterface {
 
     @Autowired
     private OwnerService service;
@@ -38,6 +39,11 @@ public class OwnerController {
         List<Person> persons = personService.getAllPersons();
         response.put("persons", persons);
         return response;
+    }
+
+    @Override
+    public String obetnerString() {
+        return "Owner";
     }
 
 

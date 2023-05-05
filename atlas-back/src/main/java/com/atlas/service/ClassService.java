@@ -1,5 +1,6 @@
 package com.atlas.service;
 
+import com.atlas.GeneralInterface;
 import com.atlas.models.taxonModels.Taxon;
 import com.atlas.repository.ClassRepository;
 import com.atlas.models.taxonModels.Class;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ClassService {
+public class ClassService implements GeneralInterface {
 
     @Autowired
     private ClassRepository classRepository;
@@ -57,7 +58,10 @@ public class ClassService {
     }
 
 
-
+    @Override
+    public String obetnerString() {
+        return "ClassService";
+    }
 
 }
 

@@ -1,5 +1,6 @@
 package com.atlas.models;
 
+import com.atlas.GeneralInterface;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "owner")
-public class Owner {
+public class Owner implements GeneralInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -73,6 +74,11 @@ public class Owner {
         this.mail = mail;
     }
 
+
+    @Override
+    public String obetnerString() {
+        return "Owner";
+    }
     
 
 
